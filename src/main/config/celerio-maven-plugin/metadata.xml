@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.jaxio.com/schema/celerio">
+  <jdbcConnectivity driver="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/sdedi2" user="postgres" password="root" oracleRetrieveRemarks="false" oracleRetrieveSynonyms="true" reverseIndexes="true" reverseOnlyUniqueIndexes="true" catalog="">
+    <tableNamePatterns/>
+    <tableTypes>
+      <tableType>TABLE</tableType>
+    </tableTypes>
+  </jdbcConnectivity>
+  <databaseInfo databaseMajorVersion="9" databaseMinorVersion="3" databaseProductName="PostgreSQL" databaseProductVersion="9.3.9" driverMajorVersion="9" driverMinorVersion="1" driverName="PostgreSQL Native Driver" driverVersion="PostgreSQL 9.1 JDBC4 (build 901)" extraInfo=""/>
+  <tables>
+    <table name="account" type="TABLE" schemaName="public">
+      <columns>
+        <column name="account_id" columnDef="nextval('sgedi_account_account_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="login" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="255" type="VARCHAR"/>
+        <column name="password" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="255" type="VARCHAR"/>
+        <column name="is_enabled" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="4" size="1" type="BIT"/>
+        <column name="last_connection" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="5" size="13" type="DATE"/>
+        <column name="mdp_expiration" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="6" size="13" type="DATE"/>
+        <column name="email" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="7" size="250" type="VARCHAR"/>
+      </columns>
+      <indexes>
+        <indexe columnName="account_id" indexName="sgedi_account_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys/>
+      <primaryKeys>
+        <primaryKey>account_id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="account_role" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('account_role_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="account_id" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="10" type="INTEGER"/>
+        <column name="role_id" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="10" type="INTEGER"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="account_role_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys>
+        <importedKey fkColumnName="account_id" fkName="fk_sgedi_accountrole_sgedi_account" pkColumnName="account_id" pkTableName="account" pkTableSchema="public"/>
+        <importedKey fkColumnName="role_id" fkName="fk_sgedi_accountrole_sgedi_role" pkColumnName="role_id" pkTableName="userrole" pkTableSchema="public"/>
+      </importedKeys>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="auditlog" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('auditlog_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="author" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="2" size="256" type="VARCHAR"/>
+        <column name="event" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="3" size="256" type="VARCHAR"/>
+        <column name="event_date" decimalDigits="6" autoIncrement="false" nullable="true" ordinalPosition="4" size="29" type="TIMESTAMP"/>
+        <column name="string_attribute_1" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="5" size="256" type="VARCHAR"/>
+        <column name="string_attribute_2" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="6" size="256" type="VARCHAR"/>
+        <column name="string_attribute_3" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="7" size="256" type="VARCHAR"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="auditlog_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys/>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="saved_search" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('seq_saved_search'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="name" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="128" type="VARCHAR"/>
+        <column name="form_classname" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="256" type="VARCHAR"/>
+        <column name="form_content" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="4" size="2147483647" type="BINARY"/>
+        <column name="account_id" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="5" size="10" type="INTEGER"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="pk_saved_search_id" nonUnique="false"/>
+      </indexes>
+      <importedKeys>
+        <importedKey fkColumnName="account_id" fkName="fk_saved_search_sgedi_account" pkColumnName="account_id" pkTableName="account" pkTableSchema="public"/>
+      </importedKeys>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="sgedi_dictodc" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('sgedi_dictodc_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="code" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="10" type="INTEGER"/>
+        <column name="libelle" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="100" type="VARCHAR"/>
+        <column name="lib1" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="4" size="100" type="VARCHAR"/>
+        <column name="lib2" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="5" size="100" type="VARCHAR"/>
+        <column name="lib3" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="6" size="100" type="VARCHAR"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="sgedi_dictodc_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys/>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="sgedi_edircci_mo" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('sgedi_edircci_mo_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="idrcci" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="10" type="INTEGER"/>
+        <column name="mouvrage" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="3" size="70" type="VARCHAR"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="sgedi_edircci_mo_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys>
+        <importedKey fkColumnName="idrcci" fkName="fk_sgedi_edircci_mo_sgedircci" pkColumnName="id" pkTableName="sgedircci" pkTableSchema="public"/>
+      </importedKeys>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="sgedi_params" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('sgedi_params_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="code" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="4" type="VARCHAR"/>
+        <column name="libelle" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="100" type="VARCHAR"/>
+        <column name="lib1" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="4" size="100" type="VARCHAR"/>
+        <column name="lib2" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="5" size="100" type="VARCHAR"/>
+        <column name="lib3" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="6" size="100" type="VARCHAR"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="sgedi_params_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys/>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="sgedi_rccidotation" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('sgedi_rccidotation_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="idrcci" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="10" type="INTEGER"/>
+        <column name="dottyp" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="10" type="INTEGER"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="sgedi_rccidotation_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys>
+        <importedKey fkColumnName="idrcci" fkName="fk_sgedi_rccidotation_sgedircci" pkColumnName="id" pkTableName="sgedircci" pkTableSchema="public"/>
+      </importedKeys>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="sgedi_titrerffi" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('sgedi_titrerffi_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="idrffi" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="2" size="10" type="INTEGER"/>
+        <column name="titre" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="3" size="100" type="VARCHAR"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="sgedi_titrerffi_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys>
+        <importedKey fkColumnName="idrffi" fkName="fk_sgedi_titrerffi" pkColumnName="id" pkTableName="sgedirffi" pkTableSchema="public"/>
+      </importedKeys>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="sgedircci" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('sgedircci_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="code_ligne" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="50" type="VARCHAR"/>
+        <column name="code_banque" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="3" type="VARCHAR"/>
+        <column name="code_localite" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="4" size="3" type="VARCHAR"/>
+        <column name="numero_guichet" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="5" size="7" type="VARCHAR"/>
+        <column name="annee_rcc" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="6" size="4" type="VARCHAR"/>
+        <column name="mois_rcc" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="7" size="4" type="VARCHAR"/>
+        <column name="ncompte_carte" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="8" size="10" type="INTEGER"/>
+        <column name="rcompte_carte" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="9" size="10" type="INTEGER"/>
+        <column name="douverture_emission" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="10" size="10" type="INTEGER"/>
+        <column name="dcompte_carte" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="11" size="3" type="VARCHAR"/>
+        <column name="nom_rsociale" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="12" size="250" type="VARCHAR"/>
+        <column name="qualite_sclient" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="13" size="10" type="INTEGER"/>
+        <column name="type_identification" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="14" size="10" type="INTEGER"/>
+        <column name="num_identification" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="15" size="35" type="VARCHAR"/>
+        <column name="centre_rc" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="16" size="3" type="VARCHAR"/>
+        <column name="rc" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="17" size="6" type="VARCHAR"/>
+        <column name="pays" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="18" size="2" type="VARCHAR"/>
+        <column name="ville" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="19" size="25" type="VARCHAR"/>
+        <column name="adresse" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="20" size="250" type="VARCHAR"/>
+        <column name="sdebut" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="21" size="13" type="NUMERIC"/>
+        <column name="total_mcredit" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="22" size="13" type="NUMERIC"/>
+        <column name="total_mdebit" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="23" size="13" type="NUMERIC"/>
+        <column name="solde_fmois" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="24" size="13" type="NUMERIC"/>
+        <column name="champ_supp2" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="25" size="400" type="VARCHAR"/>
+        <column name="champ_supp3" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="26" size="400" type="VARCHAR"/>
+        <column name="champ_supp4" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="27" size="400" type="VARCHAR"/>
+        <column name="champ_supp5" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="28" size="400" type="VARCHAR"/>
+        <column name="creation_date" decimalDigits="6" autoIncrement="false" nullable="true" ordinalPosition="29" size="29" type="TIMESTAMP"/>
+        <column name="creation_author" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="30" size="200" type="VARCHAR"/>
+        <column name="last_modification_date" columnDef="now()" decimalDigits="6" autoIncrement="false" nullable="true" ordinalPosition="31" size="29" type="TIMESTAMP"/>
+        <column name="last_modification_author" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="32" size="200" type="VARCHAR"/>
+        <column name="statut_int" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="33" size="10" type="INTEGER"/>
+        <column name="statut_ech" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="34" size="10" type="INTEGER"/>
+        <column name="code_err" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="35" size="10" type="INTEGER"/>
+        <column name="motif" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="36" size="400" type="VARCHAR"/>
+        <column name="code_role" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="37" size="10" type="INTEGER"/>
+        <column name="id_xml" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="38" size="10" type="INTEGER"/>
+        <column name="lib1" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="39" size="100" type="VARCHAR"/>
+        <column name="lib2" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="40" size="100" type="VARCHAR"/>
+        <column name="lib3" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="41" size="100" type="VARCHAR"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="sgedircci_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys>
+        <importedKey fkColumnName="qualite_sclient" fkName="fk_sgedircci_sgedi_dictodc" pkColumnName="id" pkTableName="sgedi_dictodc" pkTableSchema="public"/>
+        <importedKey fkColumnName="type_identification" fkName="fk_sgedircci_sgedi_dictodc_0" pkColumnName="id" pkTableName="sgedi_dictodc" pkTableSchema="public"/>
+        <importedKey fkColumnName="code_err" fkName="fk_sgedircci_sgedi_params_1" pkColumnName="id" pkTableName="sgedi_params" pkTableSchema="public"/>
+        <importedKey fkColumnName="statut_ech" fkName="fk_sgedircci_sgedi_params_0" pkColumnName="id" pkTableName="sgedi_params" pkTableSchema="public"/>
+        <importedKey fkColumnName="statut_int" fkName="fk_sgedircci_sgedi_params" pkColumnName="id" pkTableName="sgedi_params" pkTableSchema="public"/>
+        <importedKey fkColumnName="id_xml" fkName="fk_sgedircci_sgedixml_0" pkColumnName="id" pkTableName="sgedixml" pkTableSchema="public"/>
+        <importedKey fkColumnName="code_role" fkName="fk_sgedircci_sgedi_role" pkColumnName="role_id" pkTableName="userrole" pkTableSchema="public"/>
+      </importedKeys>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="sgedirffi" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('sgedirffi_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="code_ligne" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="2" size="50" type="VARCHAR"/>
+        <column name="code_banque" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="3" type="VARCHAR"/>
+        <column name="numero_guichet" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="4" size="7" type="VARCHAR"/>
+        <column name="anne_rffi" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="5" size="4" type="VARCHAR"/>
+        <column name="mois_rffi" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="6" size="2" type="VARCHAR"/>
+        <column name="decade_rffi" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="7" size="2" type="VARCHAR"/>
+        <column name="bic_swift" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="8" size="11" type="VARCHAR"/>
+        <column name="ncp" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="9" size="11" type="VARCHAR"/>
+        <column name="nom_rsociale" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="10" size="200" type="VARCHAR"/>
+        <column name="qualite" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="11" size="10" type="INTEGER"/>
+        <column name="type_identification" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="12" size="10" type="INTEGER"/>
+        <column name="num_identification" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="13" size="35" type="VARCHAR"/>
+        <column name="centre_rc" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="14" size="3" type="VARCHAR"/>
+        <column name="rc" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="15" size="100" type="VARCHAR"/>
+        <column name="pays" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="16" size="2" type="VARCHAR"/>
+        <column name="ville" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="17" size="200" type="VARCHAR"/>
+        <column name="adresse" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="18" size="200" type="VARCHAR"/>
+        <column name="nom_rsociale_partenaire" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="19" size="200" type="VARCHAR"/>
+        <column name="pays_partenaire" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="20" size="2" type="VARCHAR"/>
+        <column name="sens_operation" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="21" size="10" type="INTEGER"/>
+        <column name="categorie_formule" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="22" size="10" type="INTEGER"/>
+        <column name="code_noperation" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="23" size="4" type="VARCHAR"/>
+        <column name="pprovenance_destination" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="24" size="2" type="VARCHAR"/>
+        <column name="code_devise" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="25" size="3" type="VARCHAR"/>
+        <column name="montant_devise" decimalDigits="17" autoIncrement="false" nullable="true" ordinalPosition="26" size="17" type="DOUBLE"/>
+        <column name="cours_applique" decimalDigits="17" autoIncrement="false" nullable="true" ordinalPosition="27" size="17" type="DOUBLE"/>
+        <column name="montant_applique" decimalDigits="17" autoIncrement="false" nullable="true" ordinalPosition="28" size="17" type="DOUBLE"/>
+        <column name="date_execution" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="29" size="13" type="DATE"/>
+        <column name="numero_autorisation_oc" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="30" size="20" type="VARCHAR"/>
+        <column name="numero_dossier" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="31" size="30" type="VARCHAR"/>
+        <column name="information_operation" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="32" size="400" type="VARCHAR"/>
+        <column name="champ_supp2" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="33" size="400" type="VARCHAR"/>
+        <column name="champ_supp3" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="34" size="400" type="VARCHAR"/>
+        <column name="champ_supp4" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="35" size="400" type="VARCHAR"/>
+        <column name="champ_supp5" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="36" size="400" type="VARCHAR"/>
+        <column name="creation_date" decimalDigits="6" autoIncrement="false" nullable="false" ordinalPosition="37" size="29" type="TIMESTAMP"/>
+        <column name="creation_author" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="38" size="200" type="VARCHAR"/>
+        <column name="last_modification_date" columnDef="now()" decimalDigits="6" autoIncrement="false" nullable="true" ordinalPosition="39" size="29" type="TIMESTAMP"/>
+        <column name="last_modification_author" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="40" size="200" type="VARCHAR"/>
+        <column name="statut_int" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="41" size="10" type="INTEGER"/>
+        <column name="statut_ech" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="42" size="10" type="INTEGER"/>
+        <column name="code_err" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="43" size="10" type="INTEGER"/>
+        <column name="motif" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="44" size="400" type="VARCHAR"/>
+        <column name="properties" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="45" size="400" type="VARCHAR"/>
+        <column name="valeur_err" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="46" size="400" type="VARCHAR"/>
+        <column name="code_role" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="47" size="10" type="INTEGER"/>
+        <column name="id_xml" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="48" size="10" type="INTEGER"/>
+        <column name="lib1" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="49" size="100" type="VARCHAR"/>
+        <column name="lib2" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="50" size="100" type="VARCHAR"/>
+        <column name="lib3" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="51" size="100" type="VARCHAR"/>
+        <column name="numero_formule" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="52" size="100" type="VARCHAR"/>
+        <column name="client" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="53" size="50" type="VARCHAR"/>
+        <column name="code_localite" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="54" size="3" type="VARCHAR"/>
+        <column name="date_comptable" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="55" size="13" type="DATE"/>
+        <column name="motifoc" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="56" size="250" type="VARCHAR"/>
+        <column name="codeerrodc" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="57" size="10" type="VARCHAR"/>
+        <column name="affectprofil" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="58" size="200" type="VARCHAR"/>
+        <column name="date_affect" decimalDigits="6" autoIncrement="false" nullable="true" ordinalPosition="59" size="29" type="TIMESTAMP"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="sgedirffi_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys>
+        <importedKey fkColumnName="qualite" fkName="fk_sgedirffi_sgedi_dictodc" pkColumnName="id" pkTableName="sgedi_dictodc" pkTableSchema="public"/>
+        <importedKey fkColumnName="type_identification" fkName="fk_sgedirffi_sgedi_dictodc2" pkColumnName="id" pkTableName="sgedi_dictodc" pkTableSchema="public"/>
+        <importedKey fkColumnName="sens_operation" fkName="fk_sgedirffi_sgedi_dictodc3" pkColumnName="id" pkTableName="sgedi_dictodc" pkTableSchema="public"/>
+        <importedKey fkColumnName="categorie_formule" fkName="fk_sgedirffi_sgedi_dictodc4" pkColumnName="id" pkTableName="sgedi_dictodc" pkTableSchema="public"/>
+        <importedKey fkColumnName="statut_int" fkName="fk_sgedirffi_sgedi_params" pkColumnName="id" pkTableName="sgedi_params" pkTableSchema="public"/>
+        <importedKey fkColumnName="statut_ech" fkName="fk_sgedirffi_sgedi_params5" pkColumnName="id" pkTableName="sgedi_params" pkTableSchema="public"/>
+        <importedKey fkColumnName="id_xml" fkName="fk_sgedirffi_sgedixml" pkColumnName="id" pkTableName="sgedixml" pkTableSchema="public"/>
+        <importedKey fkColumnName="code_role" fkName="fk_sgedirffi_sgedi_role" pkColumnName="role_id" pkTableName="userrole" pkTableSchema="public"/>
+      </importedKeys>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="sgedirffi_errors" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('sgedirffi_errors_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="coderffi" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="2" size="19" type="BIGINT"/>
+        <column name="propriete" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="3" size="400" type="VARCHAR"/>
+        <column name="motif" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="4" size="400" type="VARCHAR"/>
+        <column name="value_error" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="5" size="400" type="VARCHAR"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="pk_sgedirffi_errors" nonUnique="false"/>
+      </indexes>
+      <importedKeys>
+        <importedKey fkColumnName="coderffi" fkName="fk_rffi_error" pkColumnName="id" pkTableName="sgedirffi" pkTableSchema="public"/>
+      </importedKeys>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="sgedixml" type="TABLE" schemaName="public">
+      <columns>
+        <column name="id" columnDef="nextval('sgedixml_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="xml" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="200" type="VARCHAR"/>
+        <column name="sens" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="10" type="INTEGER"/>
+        <column name="typ" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="4" size="4" type="VARCHAR"/>
+        <column name="anne" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="5" size="10" type="INTEGER"/>
+        <column name="mois" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="6" size="10" type="INTEGER"/>
+        <column name="decade" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="7" size="10" type="INTEGER"/>
+        <column name="date_gen" decimalDigits="6" autoIncrement="false" nullable="false" ordinalPosition="8" size="29" type="TIMESTAMP"/>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="sgedixml_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys/>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="userrole" type="TABLE" schemaName="public">
+      <columns>
+        <column name="role_id" columnDef="nextval('sgedi_role_role_id_seq'::regclass)" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER"/>
+        <column name="role" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="255" type="VARCHAR"/>
+      </columns>
+      <indexes>
+        <indexe columnName="role_id" indexName="sgedi_role_pkey" nonUnique="false"/>
+      </indexes>
+      <importedKeys/>
+      <primaryKeys>
+        <primaryKey>role_id</primaryKey>
+      </primaryKeys>
+    </table>
+  </tables>
+</metadata>

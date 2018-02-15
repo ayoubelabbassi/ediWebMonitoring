@@ -1,0 +1,10 @@
+[2018-02-15 15:23:20,715] [INFO ] [] [] [m.s.e.a.HibernateListenerRegistration.register] Registering class ma.sgma.edi2.audit.AuditLogListener listener on post-delete events
+[2018-02-15 15:23:20,720] [INFO ] [] [] [m.s.e.a.HibernateListenerRegistration.register] Registering class ma.sgma.edi2.audit.AuditLogListener listener on post-insert events
+[2018-02-15 15:23:20,720] [INFO ] [] [] [m.s.e.a.HibernateListenerRegistration.register] Registering class ma.sgma.edi2.audit.AuditLogListener listener on pre-update events
+[2018-02-15 15:23:21,083] [INFO ] [] [] [m.s.e.s.MassIndexerService.indexClass] Indexed Account in 0:00:00.335
+[2018-02-15 15:23:21,109] [INFO ] [] [] [m.s.e.s.MassIndexerService.indexClass] Indexed Userrole in 0:00:00.026
+[2018-02-15 15:23:21,110] [INFO ] [] [] [m.s.e.s.MassIndexerService.createIndex] Indexed [class ma.sgma.edi2.domain.Account, class ma.sgma.edi2.domain.Userrole] in 0:00:00.372
+[2018-02-15 15:23:21,606] [WARN ] [] [] [m.s.e.d.IdentifiableHashBuilder.hash] DEVELOPER: hashCode is not safe.If you encounter this message you should take the time to carefully review the equals/hashCode methods for: ma.sgma.edi2.domain.Auditlog You may consider using a business key.
+[2018-02-15 15:23:21,696] [DEBUG] [] [] [m.s.e.s.AuditLogService.batchInsert] Added 1 Auditlog in database
+[2018-02-15 15:23:23,638] [DEBUG] [] [] [o.s.w.f.GenericFilterBean.init] Initializing filter 'localeResolverRequestFilter'
+[2018-02-15 15:23:23,640] [DEBUG] [] [] [o.s.w.f.GenericFilterBean.init] Filter 'localeResolverRequestFilter' configured successfully
