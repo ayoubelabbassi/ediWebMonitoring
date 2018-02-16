@@ -149,8 +149,7 @@ public abstract class GenericController<E extends Identifiable<PK>, PK extends S
      * Auto-complete support. This method is used by primefaces autoComplete component.
      */
     public List<E> complete(String value) {
-        try {
-            SearchParameters searchParameters = new SearchParameters() //
+        try {SearchParameters searchParameters = new SearchParameters() //
                     .limitBroadSearch() //
                     .caseInsensitive() //
                     .anywhere() //

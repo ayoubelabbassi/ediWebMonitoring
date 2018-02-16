@@ -8,9 +8,9 @@
  ! Template is part of Open Source Project: https://github.com/jaxio/pack-jsf2-spring-conversation
 -->
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1" metadata-complete="true">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+		 version="3.1" metadata-complete="true">
 	<!-- Remove classpath scanning (from servlet 3.0) in order to speed web container startup
 	metadata-complete="true" above + empty absolute ordering below	-->
 	<absolute-ordering>
@@ -32,10 +32,10 @@
 		<description>Bootstrap listener to start up and shut down Spring's root WebApplicationContext</description>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-    <listener>
-        <description>Parse JavaServer Faces configuration resources</description>
-        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-    </listener>
+	<listener>
+		<description>Parse JavaServer Faces configuration resources</description>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
 	<listener>
 		<description>Exposes the request to the current thread through both LocaleContextHolder and RequestContextHolder</description>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
@@ -169,7 +169,7 @@
 	<context-param>
 		<description>Resources cache expiration (in millisec). Enabled only in 'Production' stage</description>
 		<param-name>com.sun.faces.defaultResourceMaxAge</param-name>
-		<param-value>86400000</param-value>
+		<param-value>0</param-value>
 	</context-param>
 	<context-param>
 		<description>Enable the usage of comments in xhtml pages</description>
@@ -187,7 +187,7 @@
 	<context-param>
 		<description>Primefaces theme</description>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>bootstrap</param-value>
+		<param-value>volt</param-value>
 	</context-param>
 	<!-- servlet -->
 	<servlet>
@@ -244,13 +244,36 @@
 		<extension>xml</extension>
 		<mime-type>text/xml</mime-type>
 	</mime-mapping>
+
+	<mime-mapping>
+		<extension>eot</extension>
+		<mime-type>application/vnd.ms-fontobject</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>otf</extension>
+		<mime-type>application/x-font-opentype</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>ttf</extension>
+		<mime-type>application/x-font-ttf</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>woff</extension>
+		<mime-type>application/x-font-woff</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>woff2</extension>
+		<mime-type>application/x-font-woff2</mime-type>
+	</mime-mapping>
+
+
 	<session-config>
 		<!-- session timeout in minutes -->
 		<session-timeout>10</session-timeout>
 		<cookie-config>
 			<http-only>true</http-only>
 		</cookie-config>
-        <tracking-mode>COOKIE</tracking-mode>
+		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
 	<!-- Error pages. -->
 	<error-page>
@@ -274,7 +297,7 @@
 		<exception-type>java.lang.Throwable</exception-type>
 		<location>/error/error.faces</location>
 	</error-page>
-		<error-page>
+	<error-page>
 		<error-code>500</error-code>
 		<location>/error/error.faces</location>
 	</error-page>

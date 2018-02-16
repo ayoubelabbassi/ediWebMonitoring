@@ -39,7 +39,7 @@
 			<app:inputMultiAutoComplete id="adresse" value="#{sgedirffiSearchForm.adresseSelector}" label="sgedirffi_adresse" completeMethod="completeProperty" property="adresse" />
 			<app:inputMultiAutoComplete id="nomRsocialePartenaire" value="#{sgedirffiSearchForm.nomRsocialePartenaireSelector}" label="sgedirffi_nomRsocialePartenaire" completeMethod="completeProperty" property="nomRsocialePartenaire" />
 			<app:inputMultiAutoComplete id="paysPartenaire" value="#{sgedirffiSearchForm.paysPartenaireSelector}" label="sgedirffi_paysPartenaire" completeMethod="completeProperty" property="paysPartenaire" />
-			<app:multiAutoComplete id="sensOperationSelector" value="#{sgedirffiSearchForm.sensOperationSelector}" label="sgedirffi_sensOperation" 
+			<app:multiAutoComplete id="sensOperationSelector2" value="#{sgedirffiSearchForm.sensOperationSelector}" label="sgedirffi_sensOperation"
 				controller="#{sgediDictodcController}" permission="#{sgediDictodcPermission}"/>
 			<app:multiAutoComplete id="categorieFormuleSelector" value="#{sgedirffiSearchForm.categorieFormuleSelector}" label="sgedirffi_categorieFormule" 
 				controller="#{sgediDictodcController}" permission="#{sgediDictodcPermission}"/>
@@ -59,7 +59,7 @@
 			<app:inputMultiAutoComplete id="champSupp5" value="#{sgedirffiSearchForm.champSupp5Selector}" label="sgedirffi_champSupp5" completeMethod="completeProperty" property="champSupp5" />
 			<app:multiAutoComplete id="statutIntSelector" value="#{sgedirffiSearchForm.statutIntSelector}" label="sgedirffi_statutInt" 
 				controller="#{sgediParamsController}" permission="#{sgediParamsPermission}"/>
-			<app:multiAutoComplete id="statutEchSelector" value="#{sgedirffiSearchForm.statutEchSelector}" label="sgedirffi_statutEch" 
+			<app:multiAutoComplete id="statutEchSelector" value="#{sgedirffiSearchForm.statutEchSelector}" label="sgedirffi_statutEch"
 				controller="#{sgediParamsController}" permission="#{sgediParamsPermission}"/>
 			<app:rangeInt id="codeErr" value="#{sgedirffiSearchForm.codeErrRange}" label="sgedirffi_codeErr"/>
 			<app:inputMultiAutoComplete id="motif" value="#{sgedirffiSearchForm.motifSelector}" label="sgedirffi_motif" completeMethod="completeProperty" property="motif" />
@@ -69,6 +69,16 @@
 				controller="#{userroleController}" permission="#{userrolePermission}"/>
 			<app:multiAutoComplete id="idXmlSelector" value="#{sgedirffiSearchForm.idXmlSelector}" label="sgedirffi_idXml" 
 				controller="#{sgedixmlController}" permission="#{sgedixmlPermission}"/>
+
+			<p:outputLabel for="sensOperationSelector" value="Editable: " />
+			<p:selectManyMenu style="width: 100%" id="sensOperationSelector" value="#{sgedirffiSearchForm.sensOperationSelector.selected}" effect="fold" converter="#{genericJsfConverter}" editable="false">
+
+				<f:selectItems value="#{sgedirffiSearchForm.listEchange('SENS')}"  var="item"  itemLabel="#{printer.print(item)}" itemValue="#{item}" />
+
+			</p:selectManyMenu>
+
+
+
 			<app:inputMultiAutoComplete id="lib1" value="#{sgedirffiSearchForm.lib1Selector}" label="sgedirffi_lib1" completeMethod="completeProperty" property="lib1" />
 			<app:inputMultiAutoComplete id="lib2" value="#{sgedirffiSearchForm.lib2Selector}" label="sgedirffi_lib2" completeMethod="completeProperty" property="lib2" />
 			<app:inputMultiAutoComplete id="lib3" value="#{sgedirffiSearchForm.lib3Selector}" label="sgedirffi_lib3" completeMethod="completeProperty" property="lib3" />
@@ -80,6 +90,8 @@
 			<app:inputMultiAutoComplete id="codeerrodc" value="#{sgedirffiSearchForm.codeerrodcSelector}" label="sgedirffi_codeerrodc" completeMethod="completeProperty" property="codeerrodc" />
 			<app:inputMultiAutoComplete id="affectprofil" value="#{sgedirffiSearchForm.affectprofilSelector}" label="sgedirffi_affectprofil" completeMethod="completeProperty" property="affectprofil" />
 			<app:rangeDateTime id="dateAffect" value="#{sgedirffiSearchForm.dateAffectRange}" label="sgedirffi_dateAffect" />
+
+
 		</ui:define>
 		<ui:define name="result">
 			<c:if test="#{not multiCheckboxSelection}">

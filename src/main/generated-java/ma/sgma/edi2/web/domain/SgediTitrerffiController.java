@@ -12,11 +12,19 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import com.jaxio.jpa.querybyexample.SearchParameters;
+import com.jaxio.jpa.querybyexample.TermSelector;
 import ma.sgma.edi2.domain.SgediTitrerffi;
 import ma.sgma.edi2.printer.SgediTitrerffiPrinter;
 import ma.sgma.edi2.repository.SgediTitrerffiRepository;
 import ma.sgma.edi2.web.domain.support.GenericController;
 import ma.sgma.edi2.web.permission.SgediTitrerffiPermission;
+
+import java.util.List;
+
+import static com.google.common.base.Throwables.propagate;
+import static com.jaxio.jpa.querybyexample.PropertySelector.newPropertySelector;
+import static org.apache.commons.lang.StringUtils.isBlank;
 
 /**
  * Stateless controller for {@link SgediTitrerffi} conversation start.
@@ -31,5 +39,31 @@ public class SgediTitrerffiController extends GenericController<SgediTitrerffi, 
     public SgediTitrerffiController(SgediTitrerffiRepository sgediTitrerffiRepository, SgediTitrerffiPermission sgediTitrerffiPermission,
             SgediTitrerffiPrinter sgediTitrerffiPrinter) {
         super(sgediTitrerffiRepository, sgediTitrerffiPermission, sgediTitrerffiPrinter, SGEDITITRERFFI_SELECT_URI, SGEDITITRERFFI_EDIT_URI);
+    }
+
+    public List<SgediTitrerffi> complete(String value) {
+        try {SearchParameters searchParameters = new SearchParameters() //
+                .limitBroadSearch() //
+                .caseInsensitive() //
+                .anywhere() //
+                .distinct() //
+                .orMode();
+            SgediTitrerffi template = repository.getNew();
+
+
+            if (!isBlank(value)) {
+                for (String property : completeProperties()) {
+                    if (repository.isIndexed(property)) {
+                        searchParameters.addTerm(new TermSelector(metamodelUtil.toAttribute(property, repository.getType())).selected(value));
+                    } else {
+                        searchParameters.anywhere().caseInsensitive();
+                        searchParameters.addProperty(newPropertySelector(property, repository.getType()).selected(value));
+                    }
+                }
+            }
+            return repository.find(template, searchParameters);
+        } catch (Exception e) {
+            throw propagate(e);
+        }
     }
 }

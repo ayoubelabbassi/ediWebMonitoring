@@ -1,0 +1,65 @@
+<ui:composition
+
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <!-- TOPBAR START -->    
+    <div id="layout-topbar">
+        <div id="layout-topbar-indent">
+
+            <a id="menu-button"><i class="icon-th-menu"></i></a>
+
+            <a href="#{baseURL}/home.faces">
+                <h:graphicImage url="#{baseURL}/resources/img/logo.png"  style="width: 58px;padding-left: 10px;" id="logo" library="volt-layout" />
+            </a>
+
+            <span class="DispInlBlock Fright" style="margin:10px 10px 0px 0px;" id="toprightmenu">
+
+                    <p:splitButton value="Menu" icon="ui-icon-check fa fa-cog" styleClass="White Fs14" appendTo="@this">
+                        <p:menuitem value="Repértoire RFFI"  icon="fa fa-user" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
+                        <p:menuitem value="Repértoire RCCI" icon="fa fa-file-text-o" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
+                        <p:menuitem value="Saisie Formule SDM" icon="fa fa-file-text-o" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
+                        <p:menuitem value="Charts" icon="fa fa-line-chart" />
+                        <p:separator />
+                        <p:menuitem value="Parametrage Dictionnaire" icon="fa fa-envelope-o" rendered="#{userContextService.hasRole('ROLE_ADMIN')}" />
+                        <p:menuitem value="Parametrage Utilisateurs" icon="fa fa-file-zip-o" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
+                        <p:menuitem value="Parametrage Application" icon="fa fa-tasks" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
+                        <p:separator />
+                        <p:menuitem value="Historique action" icon="fa fa-tasks" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
+                        <p:separator />
+                        <p:menuitem value="Se Connecter"  icon="fa fa-key" rendered="#{!userContextService.isLoggedIn()}" url="#{facesContext.externalContext.contextName}/login.faces" />
+                        <p:menuitem value="Se Deconnecter"  icon="fa fa-key" rendered="#{userContextService.isLoggedIn()}" url="#{facesContext.externalContext.contextName}/logout.faces"/>
+                        <p:separator />
+                        <p:menuitem value="Monitoring" url="#{baseURL}/monitoring" icon="fa fa-key" rendered="#{userContextService.hasRole('ROLE_MONITORING')}" />
+                    </p:splitButton>
+
+            </span>
+        </div>
+    </div>
+    <!-- TOPBAR END -->
+    
+    <!-- TOPMENU START -->
+
+    <ul id="top-menu" >
+        <c:if test="#{userContextService.isLoggedIn()}" >
+        <li style="float:left; border:none;">
+            <a href="#"><i class="icon-vcard Opac80"></i><span><span class="Fs16"> Bonjour #{userContextService.username}</span> <br/> <span class="Opac50 Fs12">Dérniére connection - 18.08.2015 | 3:55 PM</span></span></a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-printer2 Opac80"></i><span><span class="Fs16">Erreurs</span> <br/> <span class="Opac50 Fs12">Totally 23 Orders</span></span></a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-paperclip Opac80"></i><span><span class="Fs16">Notes</span> <br/> <span class="Opac50 Fs12">241 Notes</span></span></a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-stopwatch Opac80"></i><span><span class="Fs16">Tasks</span> <br/> <span class="Opac50 Fs12">26 Unread Tasks</span></span></a>
+        </li>
+        </c:if>
+    </ul>
+
+    <!-- TOPMENU END -->
+    
+</ui:composition>

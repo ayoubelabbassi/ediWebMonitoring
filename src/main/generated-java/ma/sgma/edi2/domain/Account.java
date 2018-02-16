@@ -18,16 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
@@ -201,7 +192,7 @@ public class Account implements Identifiable<Integer>, Serializable {
      * Returns the {@link #securityRoles} list.
      */
     @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id") , inverseJoinColumns = @JoinColumn(name = "role_id") )
-    @ManyToMany(cascade = { PERSIST, MERGE })
+    @ManyToMany(cascade = { PERSIST, MERGE },fetch = FetchType.EAGER)
     public List<Userrole> getSecurityRoles() {
         return securityRoles;
     }
@@ -273,5 +264,17 @@ public class Account implements Identifiable<Integer>, Serializable {
                 .add("mdpExpiration", getMdpExpiration()) //
                 .add("email", getEmail()) //
                 .toString();
+    }
+
+    @Transient
+    @XmlTransient
+    public List<String> getRoleNames() {
+        List<String> roleNames = new ArrayList<String>();
+
+        for (Userrole securityRole : getSecurityRoles()) {
+            roleNames.add(securityRole.getRole());
+        }
+
+        return roleNames;
     }
 }

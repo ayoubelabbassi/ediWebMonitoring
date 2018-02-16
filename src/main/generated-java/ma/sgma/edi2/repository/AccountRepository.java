@@ -14,6 +14,7 @@ import javax.inject.Singleton;
 import com.jaxio.jpa.querybyexample.GenericRepository;
 
 import ma.sgma.edi2.domain.Account;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * {@link GenericRepository} for {@link Account} 
@@ -35,4 +36,11 @@ public class AccountRepository extends GenericRepository<Account, Integer> {
     public Account getNewWithDefaults() {
         return getNew().withDefaults();
     }
+
+
+    @Transactional(readOnly = true)
+    public Account getByUsername(String username) {
+        return findUniqueOrNone(new Account().username(username));
+    }
+
 }

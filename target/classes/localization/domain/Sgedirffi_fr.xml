@@ -11,9 +11,9 @@
 <properties>
 	<comment>Domain resources for Sgedirffi for the french locale</comment>
 
-	<entry key="sgedirffi">Sgedirffi</entry>
-	<entry key="sgedirffi_search">Recherche de Sgedirffi</entry>
-	<entry key="sgedirffi_create">Création de Sgedirffi</entry>
+	<entry key="sgedirffi">RFFI</entry>
+	<entry key="sgedirffi_search">Recherche de RFFI</entry>
+	<entry key="sgedirffi_create">Création de RFFI</entry>
 	<entry key="sgedirffi_edit">Édition de {0}</entry>
 	<entry key="sgedirffi_view">Affichage de {0}</entry>
 
@@ -26,8 +26,8 @@
 	<entry key="sgedirffi_moisRffi">Mois Rffi</entry>
 	<entry key="sgedirffi_decadeRffi">Decade Rffi</entry>
 	<entry key="sgedirffi_bicSwift">Bic Swift</entry>
-	<entry key="sgedirffi_ncp">Ncp</entry>
-	<entry key="sgedirffi_nomRsociale">Nom Rsociale</entry>
+	<entry key="sgedirffi_ncp">Numéro Client</entry>
+	<entry key="sgedirffi_nomRsociale">Nom Raison Sociale</entry>
 	<entry key="sgedirffi_qualite">Qualite</entry>
 	<entry key="sgedirffi_typeIdentification">Type Identification</entry>
 	<entry key="sgedirffi_numIdentification">Num Identification</entry>
@@ -36,12 +36,12 @@
 	<entry key="sgedirffi_pays">Pays</entry>
 	<entry key="sgedirffi_ville">Ville</entry>
 	<entry key="sgedirffi_adresse">Adresse</entry>
-	<entry key="sgedirffi_nomRsocialePartenaire">Nom Rsociale Partenaire</entry>
+	<entry key="sgedirffi_nomRsocialePartenaire">Nom Raison sociale Partenaire</entry>
 	<entry key="sgedirffi_paysPartenaire">Pays Partenaire</entry>
 	<entry key="sgedirffi_sensOperation">Sens Operation</entry>
 	<entry key="sgedirffi_categorieFormule">Categorie Formule</entry>
-	<entry key="sgedirffi_codeNoperation">Code Noperation</entry>
-	<entry key="sgedirffi_pprovenanceDestination">Pprovenance Destination</entry>
+	<entry key="sgedirffi_codeNoperation">Code operation</entry>
+	<entry key="sgedirffi_pprovenanceDestination">Pays Provenance Destination</entry>
 	<entry key="sgedirffi_codeDevise">Code Devise</entry>
 	<entry key="sgedirffi_montantDevise">Montant Devise</entry>
 	<entry key="sgedirffi_coursApplique">Cours Applique</entry>
@@ -55,17 +55,17 @@
 	<entry key="sgedirffi_champSupp4">Champ Supp4</entry>
 	<entry key="sgedirffi_champSupp5">Champ Supp5</entry>
 	<entry key="sgedirffi_creationDate">Creation Date</entry>
-	<entry key="sgedirffi_creationAuthor">Creation Author</entry>
-	<entry key="sgedirffi_lastModificationDate">Last Modification Date</entry>
-	<entry key="sgedirffi_lastModificationAuthor">Last Modification Author</entry>
-	<entry key="sgedirffi_statutInt">Statut Int</entry>
-	<entry key="sgedirffi_statutEch">Statut Ech</entry>
-	<entry key="sgedirffi_codeErr">Code Err</entry>
+	<entry key="sgedirffi_creationAuthor">Creation Utilisateur</entry>
+	<entry key="sgedirffi_lastModificationDate">Derniere Modification </entry>
+	<entry key="sgedirffi_lastModificationAuthor">Derniere Modification Utilisateur</entry>
+	<entry key="sgedirffi_statutInt">Statut Integration</entry>
+	<entry key="sgedirffi_statutEch">Statut Echange</entry>
+	<entry key="sgedirffi_codeErr">Code Erreur</entry>
 	<entry key="sgedirffi_motif">Motif</entry>
 	<entry key="sgedirffi_properties">Properties</entry>
-	<entry key="sgedirffi_valeurErr">Valeur Err</entry>
-	<entry key="sgedirffi_codeRole">Code Role</entry>
-	<entry key="sgedirffi_idXml">Id Xml</entry>
+	<entry key="sgedirffi_valeurErr">Valeur Erreur</entry>
+	<entry key="sgedirffi_codeRole">Entite</entry>
+	<entry key="sgedirffi_idXml">Id Repertoire</entry>
 	<entry key="sgedirffi_lib1">Lib1</entry>
 	<entry key="sgedirffi_lib2">Lib2</entry>
 	<entry key="sgedirffi_lib3">Lib3</entry>
@@ -73,24 +73,24 @@
 	<entry key="sgedirffi_client">Client</entry>
 	<entry key="sgedirffi_codeLocalite">Code Localite</entry>
 	<entry key="sgedirffi_dateComptable">Date Comptable</entry>
-	<entry key="sgedirffi_motifoc">Motifoc</entry>
-	<entry key="sgedirffi_codeerrodc">Codeerrodc</entry>
-	<entry key="sgedirffi_affectprofil">Affectprofil</entry>
-	<entry key="sgedirffi_dateAffect">Date Affect</entry>
+	<entry key="sgedirffi_motifoc">Motif ODC</entry>
+	<entry key="sgedirffi_codeerrodc">Code Erreur ODC</entry>
+	<entry key="sgedirffi_affectprofil">Affectation</entry>
+	<entry key="sgedirffi_dateAffect">Date Affectation</entry>
 
 	<!-- x-to-one -->
-	<entry key="sgedirffi_idXml">Id Xml</entry>
+	<entry key="sgedirffi_idXml">Id Repertoire</entry>
 	<entry key="sgedirffi_typeIdentification">Type Identification</entry>
-	<entry key="sgedirffi_statutInt">Statut Int</entry>
+	<entry key="sgedirffi_statutInt">Statut Integration</entry>
 	<entry key="sgedirffi_qualite">Qualite</entry>
 	<entry key="sgedirffi_codeRole">Code Role</entry>
 	<entry key="sgedirffi_categorieFormule">Categorie Formule</entry>
 	<entry key="sgedirffi_sensOperation">Sens Operation</entry>
-	<entry key="sgedirffi_statutEch">Statut Ech</entry>
+	<entry key="sgedirffi_statutEch">Statut Echange</entry>
 
 	<!-- one-to-many -->
-	<entry key="sgedirffi_sgedirffiErrorss">Sgedirffi Errors</entry>
-	<entry key="sgedirffi_sgediTitrerffis">Sgedi Titrerffis</entry>
+	<entry key="sgedirffi_sgedirffiErrorss">Liste des erreurs</entry>
+	<entry key="sgedirffi_sgediTitrerffis">Liste des titres</entry>
 
 	<!-- uniques -->
 	<entry key="sgedirffi_composite_unique_constraint_error">Une contrainte d'unicité multiple n'est pas respectée sur Sgedirffi</entry>

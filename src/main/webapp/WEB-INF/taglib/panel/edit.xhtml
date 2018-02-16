@@ -34,9 +34,9 @@
 		<p:fieldset id="fieldset">
 			<input type="hidden" name="_cid" value="#{conversationManager.currentConversation.cid}"/>
 			<f:validateBean disabled="true">
-				<h:panelGrid columns="2" styleClass="aria-role-presentation">
+				<p:panelGrid columns="6" columnClasses="ui-grid-col-10,ui-grid-col-10,ui-grid-col-10,ui-grid-col-10,ui-grid-col-10,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank">
 					<ui:insert name="form" />
-				</h:panelGrid>
+				</p:panelGrid>
 				<app:saveButton title="#{title}" bean="#{bean}"/>
 			</f:validateBean>
 		</p:fieldset>

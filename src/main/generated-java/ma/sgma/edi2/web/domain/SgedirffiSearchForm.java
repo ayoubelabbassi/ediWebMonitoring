@@ -8,10 +8,13 @@
  */
 package ma.sgma.edi2.web.domain;
 
+import static com.google.common.base.Throwables.propagate;
 import static com.jaxio.jpa.querybyexample.PropertySelector.newPropertySelector;
 import static com.jaxio.jpa.querybyexample.Range.newRange;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Named;
 
@@ -25,8 +28,11 @@ import ma.sgma.edi2.domain.Sgedirffi;
 import ma.sgma.edi2.domain.Sgedirffi_;
 import ma.sgma.edi2.domain.Sgedixml;
 import ma.sgma.edi2.domain.Userrole;
+import ma.sgma.edi2.repository.SgediDictodcRepository;
+import ma.sgma.edi2.repository.SgediTitrerffiRepository;
 import ma.sgma.edi2.web.domain.support.GenericSearchForm;
 import ma.sgma.edi2.web.faces.ConversationContextScoped;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * View Helper to search {@link Sgedirffi}.
@@ -35,6 +41,15 @@ import ma.sgma.edi2.web.faces.ConversationContextScoped;
 @Named
 @ConversationContextScoped
 public class SgedirffiSearchForm extends GenericSearchForm<Sgedirffi, Integer, SgedirffiSearchForm> {
+
+    @Autowired
+    private SgediDictodcRepository sgediDictodcRepository ;
+
+
+    //specific
+    private List<PropertySelector> listEchange;
+
+
     private static final long serialVersionUID = 1L;
     protected Sgedirffi sgedirffi = new Sgedirffi();
     protected Range<Sgedirffi, Double> montantDeviseRange = newRange(Sgedirffi_.montantDevise);
@@ -422,5 +437,58 @@ public class SgedirffiSearchForm extends GenericSearchForm<Sgedirffi, Integer, S
 
     public PropertySelector<Sgedirffi, SgediParams> getStatutEchSelector() {
         return statutEchSelector;
+    }
+
+
+
+    public void setListEchange(String code) {
+
+
+
+    }
+
+    public List<SgediDictodc> getListEchange() {
+
+        try {
+            SearchParameters searchParameters = new SearchParameters() //
+                    .limitBroadSearch() //
+                    .caseInsensitive() //
+                    .anywhere() //
+                    .distinct() //
+                    .orMode();
+            SgediDictodc template = sgediDictodcRepository.getNew();
+            template.setLib1("SENS");
+            searchParameters.anywhere().caseInsensitive();
+            searchParameters.addProperty(newPropertySelector("lib1", sgediDictodcRepository.getType()).selected("SENS"));
+            List<SgediDictodc> ee = sgediDictodcRepository.find(template);
+            return ee;
+        }
+     catch (Exception e) {
+
+        throw propagate(e);
+    }
+    }
+        public List<SgediDictodc> listEchange(String code) {
+
+            try {
+                SearchParameters searchParameters = new SearchParameters() //
+                        .limitBroadSearch() //
+                        .caseInsensitive() //
+                        .anywhere() //
+                        .distinct() //
+                        .orMode();
+                SgediDictodc template = sgediDictodcRepository.getNew();
+                template.setLib1(code);
+                searchParameters.anywhere().caseInsensitive();
+                searchParameters.addProperty(newPropertySelector("lib1", sgediDictodcRepository.getType()).selected("SENS"));
+                List<SgediDictodc> ee = sgediDictodcRepository.find(template);
+                return ee;
+            }
+            catch (Exception e) {
+
+                throw propagate(e);
+            }
+
+
     }
 }

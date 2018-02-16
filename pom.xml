@@ -754,6 +754,7 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.3.5.v20151012</version>
                 <configuration>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
                     <systemProperties>
                         <systemProperty>
                             <name>org.apache.el.parser.SKIP_IDENTIFIER_CHECK</name>
