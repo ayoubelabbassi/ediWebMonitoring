@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:app="http://jaxio.com/app" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <app:outputLabel for="#{id}" value="#{label}" required="#{required}" rendered="#{(empty rendered or rendered)}" />
+
+    <p:selectManyMenu id="#{id}" filter="true" filterMatchMode="contains" showCheckbox="true"
+                      value="#{value.selected}" label="#{resourcesUtil.getProperty(label)}"
+                      rendered="#{(empty rendered or rendered) and not readonly}" disabled="#{empty disabled ? false : disabled}"
+                       style="width: 100%" scrollHeight="150"
+                       effect="fold" converter="#{genericJsfConverter}" editable="false">
+        <c:if test="#{ type eq 'DIC'}">
+        <f:selectItems value="#{sgedirffiSearchForm.listDico(code)}"
+                       var="item"  itemLabel="#{printer.print(item)}" itemValue="#{item}"  rendered="#{ type eq 'DIC'}"/>
+        </c:if>
+        <c:if test="#{ type eq 'PAR'}">
+        <f:selectItems value="#{sgedirffiSearchForm.listParams(code)}"
+                       var="item"  itemLabel="#{printer.print(item)}" itemValue="#{item}"  />
+        </c:if>
+
+    </p:selectManyMenu>
+
+
+</ui:composition>

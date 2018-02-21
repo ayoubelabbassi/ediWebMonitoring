@@ -30,5 +30,6 @@ public class SgedirffiErrorsLazyDataModel extends GenericLazyDataModel<Sgedirffi
     public SgedirffiErrorsLazyDataModel(SgedirffiErrorsRepository sgedirffiErrorsRepository, SgedirffiErrorsController sgedirffiErrorsController,
             SgedirffiErrorsSearchForm sgedirffiErrorsSearchForm, SgedirffiErrorsExcelExporter sgedirffiErrorsExcelExporter) {
         super(sgedirffiErrorsRepository, sgedirffiErrorsController, sgedirffiErrorsSearchForm, sgedirffiErrorsExcelExporter);
+        this.setModule("ERROS");
     }
 }

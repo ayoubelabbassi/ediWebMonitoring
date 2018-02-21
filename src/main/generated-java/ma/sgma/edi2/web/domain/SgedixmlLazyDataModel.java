@@ -30,5 +30,6 @@ public class SgedixmlLazyDataModel extends GenericLazyDataModel<Sgedixml, Intege
     public SgedixmlLazyDataModel(SgedixmlRepository sgedixmlRepository, SgedixmlController sgedixmlController, SgedixmlSearchForm sgedixmlSearchForm,
             SgedixmlExcelExporter sgedixmlExcelExporter) {
         super(sgedixmlRepository, sgedixmlController, sgedixmlSearchForm, sgedixmlExcelExporter);
+        this.setModule("XML");
     }
 }

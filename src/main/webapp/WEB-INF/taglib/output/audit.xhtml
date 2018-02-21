@@ -7,12 +7,13 @@
 	xmlns:app="http://jaxio.com/app"
 	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components">
 	<c:if test="#{creationAuthor ne null or creationDate ne null or lastModificationAuthor ne null or lastModificationDate ne null}">
-		<app:outputLabel for="audit" value="audit" rendered="#{rendered}" />
-		<h:panelGrid id="audit" rendered="#{empty rendered ? true : rendered}">
+
+		<p:panelGrid id="audit" columns="4"  rendered="#{empty rendered ? true : rendered}"  layout="grid" style="width: 100%">
+			<!--<app:outputLabel for="audit"  value="audit" rendered="#{rendered}" />-->
 			<h:outputText value="#{msg.creation_author} #{creationAuthor}" rendered="#{not empty creationAuthor}" />
 			<h:outputText value="#{msg.creation_date} #{creationDate}" rendered="#{not empty creationDate}" />
 			<h:outputText value="#{msg.last_modification_author} #{lastModificationAuthor}" rendered="#{not empty lastModificationAuthor}" />
 			<h:outputText value="#{msg.last_modification_date} #{lastModificationDate}" rendered="#{not empty lastModificationDate}" />
-		</h:panelGrid>
+		</p:panelGrid>
 	</c:if>
 </ui:composition>

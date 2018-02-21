@@ -75,6 +75,9 @@ APP = {};
 APP.focusAskForDeleteDialog = function() {
 	jQuery(PrimeFaces.escapeClientId('form:askForDeleteDialogNo')).focus();
 };
+APP.focusAffectDialog = function() {
+	jQuery(PrimeFaces.escapeClientId('form:dlgAffect')).focus();
+};
 
 APP.focusAskForSaveDialog = function() {
 	jQuery(PrimeFaces.escapeClientId('form:askForSaveDialogYes')).focus();

@@ -17,176 +17,223 @@
 	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components">
 <app:edit bean="#{sgedirffiEditForm}" title="#{sgedirffiEditForm.title}">
 	<ui:define name="form">
-		<app:input id="codeLigne" value="#{sgedirffiEditForm.sgedirffi.codeLigne}" size="50" label="sgedirffi_codeLigne" />
-		<app:input id="codeBanque" value="#{sgedirffiEditForm.sgedirffi.codeBanque}" size="3" label="sgedirffi_codeBanque" required="true" />
-		<app:input id="numeroGuichet" value="#{sgedirffiEditForm.sgedirffi.numeroGuichet}" size="7" label="sgedirffi_numeroGuichet" required="true" />
-		<app:input id="anneRffi" value="#{sgedirffiEditForm.sgedirffi.anneRffi}" size="4" label="sgedirffi_anneRffi" />
-		<app:input id="moisRffi" value="#{sgedirffiEditForm.sgedirffi.moisRffi}" size="2" label="sgedirffi_moisRffi" />
-		<app:input id="decadeRffi" value="#{sgedirffiEditForm.sgedirffi.decadeRffi}" size="2" label="sgedirffi_decadeRffi" />
-		<app:input id="bicSwift" value="#{sgedirffiEditForm.sgedirffi.bicSwift}" size="11" label="sgedirffi_bicSwift" />
-		<app:input id="ncp" value="#{sgedirffiEditForm.sgedirffi.ncp}" size="11" label="sgedirffi_ncp" />
-		<app:input id="nomRsociale" value="#{sgedirffiEditForm.sgedirffi.nomRsociale}" size="200" label="sgedirffi_nomRsociale" />
-		<app:autoComplete id="qualite" value="#{sgedirffiEditForm.qualite.selected}" label="sgedirffi_qualite" title="sgedirffi_qualite" required="false" 
-			model="#{sgedirffiEditForm.qualite}" controller="#{sgediDictodcController}" permission="#{sgediDictodcPermission}">
-			<app:iconSearch id="selectQualite" />
-			<app:iconAdd id="addQualite" />
-			<app:iconEdit item="#{sgedirffiEditForm.sgedirffi.qualite}" />
-			<app:iconView item="#{sgedirffiEditForm.sgedirffi.qualite}" />
-		</app:autoComplete>
-		<app:autoComplete id="typeIdentification" value="#{sgedirffiEditForm.typeIdentification.selected}" label="sgedirffi_typeIdentification" title="sgedirffi_typeIdentification" required="false" 
-			model="#{sgedirffiEditForm.typeIdentification}" controller="#{sgediDictodcController}" permission="#{sgediDictodcPermission}">
-			<app:iconSearch id="selectTypeIdentification" />
-			<app:iconAdd id="addTypeIdentification" />
-			<app:iconEdit item="#{sgedirffiEditForm.sgedirffi.typeIdentification}" />
-			<app:iconView item="#{sgedirffiEditForm.sgedirffi.typeIdentification}" />
-		</app:autoComplete>
-		<app:input id="numIdentification" value="#{sgedirffiEditForm.sgedirffi.numIdentification}" size="35" label="sgedirffi_numIdentification" />
-		<app:input id="centreRc" value="#{sgedirffiEditForm.sgedirffi.centreRc}" size="3" label="sgedirffi_centreRc" />
-		<app:input id="rc" value="#{sgedirffiEditForm.sgedirffi.rc}" size="100" label="sgedirffi_rc" />
-		<app:input id="pays" value="#{sgedirffiEditForm.sgedirffi.pays}" size="2" label="sgedirffi_pays" />
-		<app:input id="ville" value="#{sgedirffiEditForm.sgedirffi.ville}" size="200" label="sgedirffi_ville" />
-		<app:input id="adresse" value="#{sgedirffiEditForm.sgedirffi.adresse}" size="200" label="sgedirffi_adresse" />
-		<app:input id="nomRsocialePartenaire" value="#{sgedirffiEditForm.sgedirffi.nomRsocialePartenaire}" size="200" label="sgedirffi_nomRsocialePartenaire" />
-		<app:input id="paysPartenaire" value="#{sgedirffiEditForm.sgedirffi.paysPartenaire}" size="2" label="sgedirffi_paysPartenaire" />
-		<app:autoComplete id="sensOperation" value="#{sgedirffiEditForm.sensOperation.selected}" label="sgedirffi_sensOperation" title="sgedirffi_sensOperation" required="true" 
-			model="#{sgedirffiEditForm.sensOperation}" controller="#{sgediDictodcController}" permission="#{sgediDictodcPermission}">
-			<app:iconSearch id="selectSensOperation" />
-			<app:iconAdd id="addSensOperation" />
-			<app:iconEdit item="#{sgedirffiEditForm.sgedirffi.sensOperation}" />
-			<app:iconView item="#{sgedirffiEditForm.sgedirffi.sensOperation}" />
-		</app:autoComplete>
-		<app:autoComplete id="categorieFormule" value="#{sgedirffiEditForm.categorieFormule.selected}" label="sgedirffi_categorieFormule" title="sgedirffi_categorieFormule" required="true" 
-			model="#{sgedirffiEditForm.categorieFormule}" controller="#{sgediDictodcController}" permission="#{sgediDictodcPermission}">
-			<app:iconSearch id="selectCategorieFormule" />
-			<app:iconAdd id="addCategorieFormule" />
-			<app:iconEdit item="#{sgedirffiEditForm.sgedirffi.categorieFormule}" />
-			<app:iconView item="#{sgedirffiEditForm.sgedirffi.categorieFormule}" />
-		</app:autoComplete>
-		<app:input id="codeNoperation" value="#{sgedirffiEditForm.sgedirffi.codeNoperation}" size="4" label="sgedirffi_codeNoperation" />
-		<app:input id="pprovenanceDestination" value="#{sgedirffiEditForm.sgedirffi.pprovenanceDestination}" size="2" label="sgedirffi_pprovenanceDestination" />
-		<app:input id="codeDevise" value="#{sgedirffiEditForm.sgedirffi.codeDevise}" size="3" label="sgedirffi_codeDevise" />
-		<app:input id="montantDevise" value="#{sgedirffiEditForm.sgedirffi.montantDevise}" label="sgedirffi_montantDevise" size="17" />
-		<app:input id="coursApplique" value="#{sgedirffiEditForm.sgedirffi.coursApplique}" label="sgedirffi_coursApplique" size="17" />
-		<app:input id="montantApplique" value="#{sgedirffiEditForm.sgedirffi.montantApplique}" label="sgedirffi_montantApplique" size="17" />
-		<app:inputDate id="dateExecution" value="#{sgedirffiEditForm.sgedirffi.dateExecution}" label="sgedirffi_dateExecution" />
-		<app:input id="numeroAutorisationOc" value="#{sgedirffiEditForm.sgedirffi.numeroAutorisationOc}" size="20" label="sgedirffi_numeroAutorisationOc" />
-		<app:input id="numeroDossier" value="#{sgedirffiEditForm.sgedirffi.numeroDossier}" size="30" label="sgedirffi_numeroDossier" />
-		<app:inputTextArea id="informationOperation" value="#{sgedirffiEditForm.sgedirffi.informationOperation}" label="sgedirffi_informationOperation" />
-		<app:inputTextArea id="champSupp2" value="#{sgedirffiEditForm.sgedirffi.champSupp2}" label="sgedirffi_champSupp2" />
-		<app:inputTextArea id="champSupp3" value="#{sgedirffiEditForm.sgedirffi.champSupp3}" label="sgedirffi_champSupp3" />
-		<app:inputTextArea id="champSupp4" value="#{sgedirffiEditForm.sgedirffi.champSupp4}" label="sgedirffi_champSupp4" />
-		<app:inputTextArea id="champSupp5" value="#{sgedirffiEditForm.sgedirffi.champSupp5}" label="sgedirffi_champSupp5" />
-		<app:autoComplete id="statutInt" value="#{sgedirffiEditForm.statutInt.selected}" label="sgedirffi_statutInt" title="sgedirffi_statutInt" required="false" 
-			model="#{sgedirffiEditForm.statutInt}" controller="#{sgediParamsController}" permission="#{sgediParamsPermission}">
-			<app:iconSearch id="selectStatutInt" />
-			<app:iconAdd id="addStatutInt" />
-			<app:iconEdit item="#{sgedirffiEditForm.sgedirffi.statutInt}" />
-			<app:iconView item="#{sgedirffiEditForm.sgedirffi.statutInt}" />
-		</app:autoComplete>
-		<app:autoComplete id="statutEch" value="#{sgedirffiEditForm.statutEch.selected}" label="sgedirffi_statutEch" title="sgedirffi_statutEch" required="false" 
-			model="#{sgedirffiEditForm.statutEch}" controller="#{sgediParamsController}" permission="#{sgediParamsPermission}">
-			<app:iconSearch id="selectStatutEch" />
-			<app:iconAdd id="addStatutEch" />
-			<app:iconEdit item="#{sgedirffiEditForm.sgedirffi.statutEch}" />
-			<app:iconView item="#{sgedirffiEditForm.sgedirffi.statutEch}" />
-		</app:autoComplete>
-		<app:input id="codeErr" value="#{sgedirffiEditForm.sgedirffi.codeErr}" label="sgedirffi_codeErr" size="10" />
-		<app:inputTextArea id="motif" value="#{sgedirffiEditForm.sgedirffi.motif}" label="sgedirffi_motif" />
-		<app:inputTextArea id="properties" value="#{sgedirffiEditForm.sgedirffi.properties}" label="sgedirffi_properties" />
-		<app:inputTextArea id="valeurErr" value="#{sgedirffiEditForm.sgedirffi.valeurErr}" label="sgedirffi_valeurErr" />
-		<app:autoComplete id="codeRole" value="#{sgedirffiEditForm.codeRole.selected}" label="sgedirffi_codeRole" title="sgedirffi_codeRole" required="false" 
-			model="#{sgedirffiEditForm.codeRole}" controller="#{userroleController}" permission="#{userrolePermission}">
-			<app:iconSearch id="selectCodeRole" />
-			<app:iconAdd id="addCodeRole" />
-			<app:iconEdit item="#{sgedirffiEditForm.sgedirffi.codeRole}" />
-			<app:iconView item="#{sgedirffiEditForm.sgedirffi.codeRole}" />
-		</app:autoComplete>
-		<app:autoComplete id="idXml" value="#{sgedirffiEditForm.idXml.selected}" label="sgedirffi_idXml" title="sgedirffi_idXml" required="false" 
-			model="#{sgedirffiEditForm.idXml}" controller="#{sgedixmlController}" permission="#{sgedixmlPermission}">
-			<app:iconSearch id="selectIdXml" />
-			<app:iconAdd id="addIdXml" />
-			<app:iconEdit item="#{sgedirffiEditForm.sgedirffi.idXml}" />
-			<app:iconView item="#{sgedirffiEditForm.sgedirffi.idXml}" />
-		</app:autoComplete>
-		<app:input id="lib1" value="#{sgedirffiEditForm.sgedirffi.lib1}" size="100" label="sgedirffi_lib1" />
-		<app:input id="lib2" value="#{sgedirffiEditForm.sgedirffi.lib2}" size="100" label="sgedirffi_lib2" />
-		<app:input id="lib3" value="#{sgedirffiEditForm.sgedirffi.lib3}" size="100" label="sgedirffi_lib3" />
-		<app:input id="numeroFormule" value="#{sgedirffiEditForm.sgedirffi.numeroFormule}" size="100" label="sgedirffi_numeroFormule" />
-		<app:input id="client" value="#{sgedirffiEditForm.sgedirffi.client}" size="50" label="sgedirffi_client" />
-		<app:input id="codeLocalite" value="#{sgedirffiEditForm.sgedirffi.codeLocalite}" size="3" label="sgedirffi_codeLocalite" />
-		<app:inputDate id="dateComptable" value="#{sgedirffiEditForm.sgedirffi.dateComptable}" label="sgedirffi_dateComptable" />
-		<app:input id="motifoc" value="#{sgedirffiEditForm.sgedirffi.motifoc}" size="250" label="sgedirffi_motifoc" />
-		<app:input id="codeerrodc" value="#{sgedirffiEditForm.sgedirffi.codeerrodc}" size="10" label="sgedirffi_codeerrodc" />
-		<app:input id="affectprofil" value="#{sgedirffiEditForm.sgedirffi.affectprofil}" size="200" label="sgedirffi_affectprofil" />
-		<app:inputDateTime id="dateAffect" value="#{sgedirffiEditForm.sgedirffi.dateAffect}" label="sgedirffi_dateAffect" />
-		<app:audit
-			creationAuthor="#{sgedirffiEditForm.sgedirffi.creationAuthor}"
-			creationDate="#{sgedirffiEditForm.sgedirffi.creationDate}"
-			lastModificationAuthor="#{sgedirffiEditForm.sgedirffi.lastModificationAuthor}"
-			lastModificationDate="#{sgedirffiEditForm.sgedirffi.lastModificationDate}"
-		/>
+
+		<!-- <app:input id="codeLigne" value="#{sgedirffiEditForm.sgedirffi.codeLigne}" size="50" label="sgedirffi_codeLigne" readonly="true" /> -->
+
+		<p:fieldset legend="Erreurs Lécture des données" rendered="#{sgedirffiEditForm.sgedirffi.sgedirffiErrorss.size() > 0}"
+				style="">
+
+			<p:dataTable id="sgedirffiErrorssList2" var="item" value="#{sgedirffiEditForm.sgedirffiErrorss.model}"
+						 paginator="#{not print and sgedirffiEditForm.sgedirffi.sgedirffiErrorss.size() gt 10}" rows="#{print ? null : 10}"
+						 rowsPerPageTemplate="10,25,50,100" paginatorPosition="bottom" style="width: 100%"
+						 selection="#{sgedirffiEditForm.sgedirffiErrorss.model.selectedRow}" selectionMode="single" emptyMessage="#{msg.collection_empty}">
+				<p:ajax event="rowSelect" listener="#{sgedirffiEditForm.sgedirffiErrorss.onRowSelect}" />
+				<p:column id="sgedirffiErrors_propriete2" headerText="#{msg.sgedirffiErrors_propriete}" sortBy="#{item.propriete}" styleClass="propriete">
+					#{item.propriete}
+				</p:column>
+				<p:column id="sgedirffiErrors_motif2" headerText="#{msg.sgedirffiErrors_motif}" sortBy="#{item.motif}" styleClass="motif">
+					#{item.motif}
+				</p:column>
+				<p:column id="sgedirffiErrors_valueError2" headerText="#{msg.sgedirffiErrors_valueError}" sortBy="#{item.valueError}" styleClass="valueError">
+					#{item.valueError}
+				</p:column>
+			</p:dataTable>
+
+		</p:fieldset>
+
+		<p:fieldset legend="Identification Agence">
+			<p:panelGrid columns="4"
+						 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid"
+						 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+				<app:input id="codeBanque" value="#{sgedirffiEditForm.sgedirffi.codeBanque}" size="3" label="sgedirffi_codeBanque" required="true" readonly="true"/>
+				<app:input id="numeroGuichet" value="#{sgedirffiEditForm.sgedirffi.numeroGuichet}" size="7" label="sgedirffi_numeroGuichet" required="true" readonly="true" />
+				<app:input id="codeLocalite" value="#{sgedirffiEditForm.sgedirffi.codeLocalite}" size="3" label="sgedirffi_codeLocalite" readonly="true"/>
+
+
+			</p:panelGrid>
+		</p:fieldset>
+
+
+		<p:fieldset legend="Identification Correspondant">
+			<p:panelGrid columns="4"
+						 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid"
+						 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+				<app:input id="bicSwift" value="#{sgedirffiEditForm.sgedirffi.bicSwift}" size="11" label="sgedirffi_bicSwift" readonly="true" />
+
+
+			</p:panelGrid>
+		</p:fieldset>
+
+
+		<p:fieldset legend="Identification Client">
+			<p:panelGrid columns="4"
+						 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid"
+						 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+				<app:input id="ncp" value="#{sgedirffiEditForm.sgedirffi.ncp}" size="11" label="sgedirffi_ncp" readonly="true"/>
+				<app:input id="nomRsociale" value="#{sgedirffiEditForm.sgedirffi.nomRsociale}" size="200" label="sgedirffi_nomRsociale" readonly="true"/>
+				<app:autoComplete readonly="true" id="qualite" value="#{sgedirffiEditForm.qualite.selected}" label="sgedirffi_qualite" title="sgedirffi_qualite" required="false"
+								  	  model="#{sgedirffiEditForm.qualite}" controller="#{sgediDictodcController}" permission="#{sgediDictodcPermission}" >
+
+				</app:autoComplete>
+				<app:autoComplete readonly="true" id="typeIdentification" value="#{sgedirffiEditForm.typeIdentification.selected}" label="sgedirffi_typeIdentification" title="sgedirffi_typeIdentification" required="false"
+								  model="#{sgedirffiEditForm.typeIdentification}" controller="#{sgediDictodcController}" permission="#{sgediDictodcPermission}" >
+				</app:autoComplete>
+				<app:input id="numIdentification" value="#{sgedirffiEditForm.sgedirffi.numIdentification}" size="35" label="sgedirffi_numIdentification" readonly="true"/>
+				<app:input id="centreRc" value="#{sgedirffiEditForm.sgedirffi.centreRc}" size="3" label="sgedirffi_centreRc" readonly="true"  />
+				<app:input id="rc" value="#{sgedirffiEditForm.sgedirffi.rc}" size="100" label="sgedirffi_rc" readonly="true" />
+				<app:input id="pays" value="#{sgedirffiEditForm.sgedirffi.pays}" size="2" label="sgedirffi_pays" readonly="true"/>
+				<app:input id="ville" value="#{sgedirffiEditForm.sgedirffi.ville}" size="200" label="sgedirffi_ville" readonly="true"/>
+
+				<app:input id="adresse" value="#{sgedirffiEditForm.sgedirffi.adresse}" size="200" label="sgedirffi_adresse" readonly="true" />
+
+
+			</p:panelGrid>
+		</p:fieldset>
+
+		<p:fieldset legend="Identification Partenaire">
+			<p:panelGrid columns="4"
+						 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid"
+						 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+				<app:input id="nomRsocialePartenaire" value="#{sgedirffiEditForm.sgedirffi.nomRsocialePartenaire}" size="200" label="sgedirffi_nomRsocialePartenaire" />
+				<app:input id="paysPartenaire" value="#{sgedirffiEditForm.sgedirffi.paysPartenaire}" size="2" label="sgedirffi_paysPartenaire" />
+
+
+			</p:panelGrid>
+		</p:fieldset>
+
+		<p:fieldset legend="Information Operation">
+			<p:panelGrid columns="4"
+						 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid"
+						 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+				<app:autoComplete readonly="true" id="sensOperation" value="#{sgedirffiEditForm.sensOperation.selected}" label="sgedirffi_sensOperation" title="sgedirffi_sensOperation" required="true"
+								  model="#{sgedirffiEditForm.sensOperation}" controller="#{sgediDictodcController}" permission="#{sgediDictodcPermission}">
+				</app:autoComplete>
+				<app:autoComplete readonly="true" id="categorieFormule" value="#{sgedirffiEditForm.categorieFormule.selected}" label="sgedirffi_categorieFormule" title="sgedirffi_categorieFormule" required="true"
+								  model="#{sgedirffiEditForm.categorieFormule}" controller="#{sgediDictodcController}" permission="#{sgediDictodcPermission}">
+				</app:autoComplete>
+				<app:input id="codeNoperation" value="#{sgedirffiEditForm.sgedirffi.codeNoperation}" size="4" label="sgedirffi_codeNoperation" />
+				<app:input id="pprovenanceDestination" value="#{sgedirffiEditForm.sgedirffi.pprovenanceDestination}" size="2" label="sgedirffi_pprovenanceDestination" />
+
+
+			</p:panelGrid>
+		</p:fieldset>
+
+
+		<p:fieldset legend="Execution Operation">
+			<p:panelGrid columns="4"
+						 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid"
+						 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+				<app:input id="codeDevise" value="#{sgedirffiEditForm.sgedirffi.codeDevise}" size="3" label="sgedirffi_codeDevise" readonly="true"/>
+				<app:input id="montantDevise" value="#{sgedirffiEditForm.sgedirffi.montantDevise}" label="sgedirffi_montantDevise" size="17" readonly="true"/>
+				<app:input id="coursApplique" value="#{sgedirffiEditForm.sgedirffi.coursApplique}" label="sgedirffi_coursApplique" size="17" readonly="true"/>
+				<app:input id="montantApplique" value="#{sgedirffiEditForm.sgedirffi.montantApplique}" label="sgedirffi_montantApplique" size="17" readonly="true"/>
+				<app:inputDate id="dateExecution" value="#{sgedirffiEditForm.sgedirffi.dateExecution}" label="sgedirffi_dateExecution" readonly="true"/>
+
+
+			</p:panelGrid>
+		</p:fieldset>
+
+		<p:fieldset legend="Reference Operation">
+			<p:panelGrid columns="4"
+						 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid"
+						 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+				<app:input id="numeroAutorisationOc" value="#{sgedirffiEditForm.sgedirffi.numeroAutorisationOc}" size="20" label="sgedirffi_numeroAutorisationOc" />
+				<app:input id="numeroDossier" value="#{sgedirffiEditForm.sgedirffi.numeroDossier}" size="30" label="sgedirffi_numeroDossier" readonly="true" />
+				<app:input id="numeroFormule" value="#{sgedirffiEditForm.sgedirffi.numeroFormule}" size="100" label="sgedirffi_numeroFormule" readonly="true" />
+				<app:inputDate id="dateComptable" value="#{sgedirffiEditForm.sgedirffi.dateComptable}" label="sgedirffi_dateComptable" readonly="true"/>
+
+			</p:panelGrid>
+		</p:fieldset>
+
+
+
+		<p:fieldset legend="Informations Suplémentaires">
+			<p:panelGrid columns="4"
+						 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid"
+						 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+				<app:inputTextArea id="informationOperation" value="#{sgedirffiEditForm.sgedirffi.informationOperation}" label="sgedirffi_informationOperation" />
+				<app:inputTextArea id="champSupp2" value="#{sgedirffiEditForm.sgedirffi.champSupp2}" label="sgedirffi_champSupp2" />
+				<app:inputTextArea id="champSupp3" value="#{sgedirffiEditForm.sgedirffi.champSupp3}" label="sgedirffi_champSupp3" />
+				<app:inputTextArea id="champSupp4" value="#{sgedirffiEditForm.sgedirffi.champSupp4}" label="sgedirffi_champSupp4" />
+				<app:inputTextArea id="champSupp5" value="#{sgedirffiEditForm.sgedirffi.champSupp5}" label="sgedirffi_champSupp5" />
+
+			</p:panelGrid>
+		</p:fieldset>
+
+		<p:fieldset legend="Statut d'intégration/lecture ">
+			<p:panelGrid columns="4"
+						 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid"
+						 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+				<app:autoComplete id="statutInt" value="#{sgedirffiEditForm.statutInt.selected}" label="sgedirffi_statutInt" title="sgedirffi_statutInt" required="false"
+							  model="#{sgedirffiEditForm.statutInt}" controller="#{sgediParamsController}" permission="#{sgediParamsPermission}" readonly="true">
+				</app:autoComplete>
+				<app:autoComplete id="statutEch" value="#{sgedirffiEditForm.statutEch.selected}" label="sgedirffi_statutEch" title="sgedirffi_statutEch" required="false"
+								  model="#{sgedirffiEditForm.statutEch}" controller="#{sgediParamsController}" permission="#{sgediParamsPermission}" readonly="true">
+				</app:autoComplete>
+
+
+				<app:autoComplete id="idXml" value="#{sgedirffiEditForm.idXml.selected}" label="sgedirffi_idXml" title="sgedirffi_idXml" required="false"
+								  model="#{sgedirffiEditForm.idXml}" controller="#{sgedixmlController}" permission="#{sgedixmlPermission}" readonly="true">
+				</app:autoComplete>
+
+
+			</p:panelGrid>
+		</p:fieldset>
+
+
+		<p:fieldset legend="Retour ODC">
+			<p:panelGrid columns="4"
+						 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid"
+						 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+
+			</p:panelGrid>
+		</p:fieldset>
+
 	</ui:define>
+
+
 	<ui:define name="tabs">
-			<p:tab id="sgedirffiErrorss" title="#{msg.sgedirffi_sgedirffiErrorss}" rendered="#{sgedirffiErrorsPermission.canUse() and not (print and sgedirffiEditForm.sgedirffi.sgedirffiErrorss.isEmpty())}">
-				<p:dataTable id="sgedirffiErrorssList" var="item" value="#{sgedirffiEditForm.sgedirffiErrorss.model}"
-					paginator="#{not print and sgedirffiEditForm.sgedirffi.sgedirffiErrorss.size() gt 10}" rows="#{print ? null : 10}"
-					rowsPerPageTemplate="10,25,50,100" paginatorPosition="bottom"
-					selection="#{sgedirffiEditForm.sgedirffiErrorss.model.selectedRow}" selectionMode="single" emptyMessage="#{msg.collection_empty}">
-					<p:ajax event="rowSelect" listener="#{sgedirffiEditForm.sgedirffiErrorss.onRowSelect}" />
-					<p:column id="sgedirffiErrors_propriete" headerText="#{msg.sgedirffiErrors_propriete}" sortBy="#{item.propriete}" styleClass="propriete">
-						#{item.propriete}
-					</p:column>
-					<p:column id="sgedirffiErrors_motif" headerText="#{msg.sgedirffiErrors_motif}" sortBy="#{item.motif}" styleClass="motif">
-						#{item.motif}
-					</p:column>
-					<p:column id="sgedirffiErrors_valueError" headerText="#{msg.sgedirffiErrors_valueError}" sortBy="#{item.valueError}" styleClass="valueError">
-						#{item.valueError}
-					</p:column>
-					<p:column id="actions" styleClass="actions-column" resizable="false">
-						<f:facet name="header">
-							<app:iconAdd id="addSgedirffiErrors" model="#{sgedirffiEditForm.sgedirffiErrorss}" title="sgedirffi_sgedirffiErrorss" permission="#{sgedirffiErrorsPermission}"/>
-						</f:facet>
-						<app:iconView model="#{sgedirffiEditForm.sgedirffiErrorss}" item="#{item}" permission="#{sgedirffiErrorsPermission}">
-							<f:setPropertyActionListener value="#{item}" target="#{sgedirffiEditForm.sgedirffiErrorss.model.selectedRow}" />
-						</app:iconView>
-						<app:iconEdit model="#{sgedirffiEditForm.sgedirffiErrorss}" item="#{item}" permission="#{sgedirffiErrorsPermission}">
-							<f:setPropertyActionListener value="#{item}" target="#{sgedirffiEditForm.sgedirffiErrorss.model.selectedRow}" />
-						</app:iconEdit>
-						<app:iconRemove dialogWidgetVar="askForRemoveSgedirffiErrorsDialog" item="#{item}" permission="#{sgedirffiErrorsPermission}">
-							<f:setPropertyActionListener value="#{item}" target="#{sgedirffiEditForm.sgedirffiErrorss.model.selectedRow}" />
-						</app:iconRemove>
-					</p:column>
-				</p:dataTable>
-			</p:tab>
-			<p:tab id="sgediTitrerffis" title="#{msg.sgedirffi_sgediTitrerffis}" rendered="#{sgediTitrerffiPermission.canUse() and not (print and sgedirffiEditForm.sgedirffi.sgediTitrerffis.isEmpty())}">
-				<p:dataTable id="sgediTitrerffisList" var="item" value="#{sgedirffiEditForm.sgediTitrerffis.model}"
-					paginator="#{not print and sgedirffiEditForm.sgedirffi.sgediTitrerffis.size() gt 10}" rows="#{print ? null : 10}"
-					rowsPerPageTemplate="10,25,50,100" paginatorPosition="bottom"
-					selection="#{sgedirffiEditForm.sgediTitrerffis.model.selectedRow}" selectionMode="single" emptyMessage="#{msg.collection_empty}">
-					<p:ajax event="rowSelect" listener="#{sgedirffiEditForm.sgediTitrerffis.onRowSelect}" />
-					<p:column id="sgediTitrerffi_titre" headerText="#{msg.sgediTitrerffi_titre}" sortBy="#{item.titre}" styleClass="titre">
-						#{item.titre}
-					</p:column>
-					<p:column id="actions" styleClass="actions-column" resizable="false">
-						<f:facet name="header">
-							<app:iconAdd id="addSgediTitrerffi" model="#{sgedirffiEditForm.sgediTitrerffis}" title="sgedirffi_sgediTitrerffis" permission="#{sgediTitrerffiPermission}"/>
-						</f:facet>
-						<app:iconView model="#{sgedirffiEditForm.sgediTitrerffis}" item="#{item}" permission="#{sgediTitrerffiPermission}">
-							<f:setPropertyActionListener value="#{item}" target="#{sgedirffiEditForm.sgediTitrerffis.model.selectedRow}" />
-						</app:iconView>
-						<app:iconEdit model="#{sgedirffiEditForm.sgediTitrerffis}" item="#{item}" permission="#{sgediTitrerffiPermission}">
-							<f:setPropertyActionListener value="#{item}" target="#{sgedirffiEditForm.sgediTitrerffis.model.selectedRow}" />
-						</app:iconEdit>
-						<app:iconRemove dialogWidgetVar="askForRemoveSgediTitrerffiDialog" item="#{item}" permission="#{sgediTitrerffiPermission}">
-							<f:setPropertyActionListener value="#{item}" target="#{sgedirffiEditForm.sgediTitrerffis.model.selectedRow}" />
-						</app:iconRemove>
-					</p:column>
-				</p:dataTable>
-			</p:tab>
+		<p:separator></p:separator>
+		<p:tab id="sgediTitrerffis" title="#{msg.sgedirffi_sgediTitrerffis}" rendered="#{sgediTitrerffiPermission.canUse() and not (print and sgedirffiEditForm.sgedirffi.sgediTitrerffis.isEmpty())}">
+			<p:dataTable id="sgediTitrerffisList" var="item" value="#{sgedirffiEditForm.sgediTitrerffis.model}"
+						 paginator="#{not print and sgedirffiEditForm.sgedirffi.sgediTitrerffis.size() gt 10}" rows="#{print ? null : 10}"
+						 rowsPerPageTemplate="10,25,50,100" paginatorPosition="bottom"
+						 selection="#{sgedirffiEditForm.sgediTitrerffis.model.selectedRow}" selectionMode="single" emptyMessage="#{msg.collection_empty}">
+				<p:ajax event="rowSelect" listener="#{sgedirffiEditForm.sgediTitrerffis.onRowSelect}" />
+				<p:column id="sgediTitrerffi_titre" headerText="#{msg.sgediTitrerffi_titre}" sortBy="#{item.titre}" styleClass="titre">
+					#{item.titre}
+				</p:column>
+				<p:column id="actions" styleClass="actions-column" resizable="false">
+					<f:facet name="header">
+						<app:iconAdd id="addSgediTitrerffi" model="#{sgedirffiEditForm.sgediTitrerffis}" title="sgedirffi_sgediTitrerffis" permission="#{sgediTitrerffiPermission}"/>
+					</f:facet>
+					<app:iconView model="#{sgedirffiEditForm.sgediTitrerffis}" item="#{item}" permission="#{sgediTitrerffiPermission}">
+						<f:setPropertyActionListener value="#{item}" target="#{sgedirffiEditForm.sgediTitrerffis.model.selectedRow}" />
+					</app:iconView>
+					<app:iconEdit model="#{sgedirffiEditForm.sgediTitrerffis}" item="#{item}" permission="#{sgediTitrerffiPermission}">
+						<f:setPropertyActionListener value="#{item}" target="#{sgedirffiEditForm.sgediTitrerffis.model.selectedRow}" />
+					</app:iconEdit>
+					<app:iconRemove dialogWidgetVar="askForRemoveSgediTitrerffiDialog" item="#{item}" permission="#{sgediTitrerffiPermission}">
+						<f:setPropertyActionListener value="#{item}" target="#{sgedirffiEditForm.sgediTitrerffis.model.selectedRow}" />
+					</app:iconRemove>
+				</p:column>
+			</p:dataTable>
+		</p:tab>
 	</ui:define>
 	<ui:define name="custom-dialogs">
-		<app:confirmToManyRemoveDialog widgetVar="askForRemoveSgedirffiErrorsDialog" toManyAction="#{sgedirffiEditForm.sgedirffiErrorss}" update=":form:tabs:sgedirffiErrorssList :form:messages" />
 		<app:confirmToManyRemoveDialog widgetVar="askForRemoveSgediTitrerffiDialog" toManyAction="#{sgedirffiEditForm.sgediTitrerffis}" update=":form:tabs:sgediTitrerffisList :form:messages" />
 	</ui:define>
+
+
 </app:edit>
 </ui:composition>

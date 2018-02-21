@@ -18,6 +18,8 @@
 		encoding="UTF-8"
 		lang="#{localeService.locale}">
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#{localeService.locale}" lang="#{localeService.locale}">
+
+
 	<h:head>
 		<f:facet name="first">
 			<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
@@ -25,7 +27,7 @@
 			<title>#{empty title? msg.main_title : resourcesUtil.getProperty(title)}</title>
 		</f:facet>
 		<f:facet name="last">
-			<h:outputStylesheet name="css/main.css" />
+
 			<h:outputScript name="js/main.js" />
 			<h:outputScript name="js/primefaces-locale.js" />
 			<h:outputScript name="js/layout.js" library="volt-layout" />
@@ -56,6 +58,7 @@
 						</div>
 
 						<div id="layout-portlets-tablecell-right">
+
 							<p:layoutUnit id="centerErr" position="center">
 								<div id="messagesRegion" aria-label="form feedback" aria-live="assertive" aria-relevant="additions">
 									<appcc:messages id="messages" rendered="#{empty disableMessages or not disableMessages}" />
@@ -72,6 +75,7 @@
 				</div>
 			</div>
 		</div>
+			<h:outputStylesheet name="css/edi.css" />
 		<h:outputStylesheet name="css/core-layout.css" library="volt-layout" />
 		<h:outputStylesheet name="css/animate.css" library="volt-layout" />
 		<h:outputStylesheet name="css/volt-font.css" library="volt-layout" />

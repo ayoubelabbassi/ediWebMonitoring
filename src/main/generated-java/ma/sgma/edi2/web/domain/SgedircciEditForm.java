@@ -62,6 +62,7 @@ public class SgedircciEditForm extends GenericEditForm<Sgedircci, Integer> {
     @Inject
     public SgedircciEditForm(SgedircciRepository sgedircciRepository, SgedircciGraphLoader sgedircciGraphLoader) {
         super(sgedircciRepository, sgedircciGraphLoader);
+        this.setModule("RCCI");
     }
 
     /**

@@ -1,7 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<p:commandLink 
+	<p:commandLink style="width: 20px"
 		ajax="false"
 		action="#{model.edit()}"
 		process="#{empty process? '@form' : process}"
@@ -10,6 +10,6 @@
 		rendered="#{empty rendered ? not readonly and permission.canEdit(item) : rendered}"
 		title="#{empty item ? resourcesUtil.getProperty(title) : resourcesUtil.getProperty('icon_edit', printer.print(item))}">
 		<ui:insert/>
-		<div class="ui-button ui-icon iconEdit"/>
+		<i class="icon-edit"></i>
 	</p:commandLink>
 </ui:composition>

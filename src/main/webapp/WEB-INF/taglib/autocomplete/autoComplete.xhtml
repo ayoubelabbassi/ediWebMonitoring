@@ -18,7 +18,7 @@
 			size="#{empty size ? 50 : size}"
 			dropdown="true"
 			styleClass="#{styleClass}"
-			rendered="#{not readonly}">
+			rendered="#{! (readonly  eq 'true')}">
 			<f:validateBean binding="#{lenientBeanValidator}"/>
 			<p:ajax event="itemSelect" update="#{id}Grid"/>
 			<p:ajax event="blur" update="#{id}GridInsert"/>

@@ -30,5 +30,6 @@ public class SgediTitrerffiLazyDataModel extends GenericLazyDataModel<SgediTitre
     public SgediTitrerffiLazyDataModel(SgediTitrerffiRepository sgediTitrerffiRepository, SgediTitrerffiController sgediTitrerffiController,
             SgediTitrerffiSearchForm sgediTitrerffiSearchForm, SgediTitrerffiExcelExporter sgediTitrerffiExcelExporter) {
         super(sgediTitrerffiRepository, sgediTitrerffiController, sgediTitrerffiSearchForm, sgediTitrerffiExcelExporter);
+        this.setModule("TITRE");
     }
 }

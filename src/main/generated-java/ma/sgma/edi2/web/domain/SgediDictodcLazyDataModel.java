@@ -30,5 +30,6 @@ public class SgediDictodcLazyDataModel extends GenericLazyDataModel<SgediDictodc
     public SgediDictodcLazyDataModel(SgediDictodcRepository sgediDictodcRepository, SgediDictodcController sgediDictodcController,
             SgediDictodcSearchForm sgediDictodcSearchForm, SgediDictodcExcelExporter sgediDictodcExcelExporter) {
         super(sgediDictodcRepository, sgediDictodcController, sgediDictodcSearchForm, sgediDictodcExcelExporter);
+        this.setModule("DIC");
     }
 }

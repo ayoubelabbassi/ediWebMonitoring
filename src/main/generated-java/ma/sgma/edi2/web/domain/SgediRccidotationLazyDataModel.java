@@ -30,5 +30,6 @@ public class SgediRccidotationLazyDataModel extends GenericLazyDataModel<SgediRc
     public SgediRccidotationLazyDataModel(SgediRccidotationRepository sgediRccidotationRepository, SgediRccidotationController sgediRccidotationController,
             SgediRccidotationSearchForm sgediRccidotationSearchForm, SgediRccidotationExcelExporter sgediRccidotationExcelExporter) {
         super(sgediRccidotationRepository, sgediRccidotationController, sgediRccidotationSearchForm, sgediRccidotationExcelExporter);
+        this.setModule("DOT");
     }
 }

@@ -28,6 +28,7 @@ public class SgediParamsEditForm extends GenericEditForm<SgediParams, Integer> {
     @Inject
     public SgediParamsEditForm(SgediParamsRepository sgediParamsRepository) {
         super(sgediParamsRepository);
+        this.setModule("PARAM");
     }
 
     /**

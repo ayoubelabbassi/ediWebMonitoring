@@ -36,6 +36,7 @@ public class SgediRccidotationEditForm extends GenericEditForm<SgediRccidotation
     @Inject
     public SgediRccidotationEditForm(SgediRccidotationRepository sgediRccidotationRepository, SgediRccidotationGraphLoader sgediRccidotationGraphLoader) {
         super(sgediRccidotationRepository, sgediRccidotationGraphLoader);
+        this.setModule("DOT");
     }
 
     /**

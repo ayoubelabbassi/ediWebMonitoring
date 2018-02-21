@@ -13,12 +13,12 @@
 		</p:toolbarGroup>
 		<p:toolbarGroup align="left" rendered="#{not sub and not readonly}">
 			<p:commandButton id="quit" action="#{searchForm.quit()}" ajax="false" immediate="true" process="@form"
-				icon="ui-icon-closethick"
+				icon="fa fa-close" styleClass="RedButton"
 				value="#{msg.menu_quit}"
 				title="#{msg.menu_quit} #{resourcesUtil.getProperty(title)}" />
 			<p:separator />
 			<p:commandButton id="create" action="#{model.create()}" ajax="false" immediate="true" process="@this"
-				icon="ui-icon-document"
+				icon="ui-icon-document" styleClass="BlueButton"
 				rendered="#{empty bean and permission.canCreate()}"
 				value="#{msg.menu_new}"
 				title="#{msg.menu_new} #{resourcesUtil.getProperty(title)}" />
@@ -27,27 +27,40 @@
 	<ui:define name="content">
 		<p:breadCrumb model="#{conversationBreadCrumb.model}" rendered="#{conversationBreadCrumb.render}" />
 		<p:fieldset id="fullTextFieldset" legend="#{msg.search_full_text_criteria}" toggleable="true" rendered="#{fullText}">
-			<h:panelGrid columns="4">
+			<h:panelGrid columns="4" >
 				<ui:insert name="fullTextFilters" />
 			</h:panelGrid>
 		</p:fieldset>
-		<p:fieldset id="filtersFieldset" legend="#{msg.search_criteria}" toggleable="true">
-			<input type="hidden" name="_cid" value="#{conversationManager.currentConversation.cid}"/>
+				<input type="hidden" name="_cid" value="#{conversationManager.currentConversation.cid}"/>
+		<div  class="Container100 ui-fluid">
+			<div class="Card">
+				<div class="CardTopic">Formulaire de Recherche</div>
+				<div class="Separator"></div>
+				<p:panelGrid id="filtersFieldset" columns="4"
+							 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" layout="grid" styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+
 			<f:validateBean disabled="true">
-				<h:panelGrid columns="4">
 					<ui:insert name="filters" />
-				</h:panelGrid>
+
+
 			</f:validateBean>
-		</p:fieldset>
+
+				</p:panelGrid>
+			</div>
+		</div>
+
 		<p:commandButton id="search" actionListener="#{model.onSearch()}" process="@form"
-			icon="iconSearch" styleClass="aria-search-button default"
+			icon="fa fa-search" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only GreenButton RaisedButton"
 			update="messages searchResults" value="#{msg.menu_search}"
-			title="#{msg.menu_search} #{resourcesUtil.getProperty(title)}" />
-		<p:commandButton id="resetSearch" icon="ui-icon-power" value="#{msg.search_reset}"
+			title="#{msg.menu_search} #{resourcesUtil.getProperty(title)}" style="width: 140px" />
+		<p:commandButton id="resetSearch" icon="fa fa-flash" value="#{msg.search_reset}" style="width: 140px"
 			actionListener="#{searchForm.reset()}"
-			update="messages fullTextFieldset filtersFieldset searchResults searchFormName"/>
-		<p:commandButton id="excel" action="#{model.onExcel()}" process="@form"
-			icon="iconExcel" value="Excel" ajax="false" />
+			update="messages fullTextFieldset filtersFieldset searchResults searchFormName" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only RedButton RaisedButton"/>
+		<p:commandButton id="excel" action="#{model.onExcel()}" process="@form" style="width: 140px"
+			icon="fa fa-file-excel-o" value="Excel" ajax="false" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only GreenButton RaisedButton" />
+
+
 		<h:panelGroup rendered="#{savedSearch}">
 			<p:autoComplete id="searchFormName" rendered="#{savedSearch}"
 				value="#{searchForm.currentSavedSearch}"
@@ -74,7 +87,7 @@
 		<span style="height: 16px; display: block;">
 			<p:ajaxStatus>
 				<f:facet name="start">
-					<h:graphicImage id="ajaxSearchLoading" name="icons/ajaxloading.gif" alt="Loading..." />
+					<h:graphicImage id="ajaxSearchLoading" name="icons/ajaxloading.gif" alt="Chargement..." />
 				</f:facet>
 				<f:facet name="error">
 					<h:outputText id="ajaxSearchError" value="#{msg.error_ajax}" />
@@ -87,21 +100,34 @@
 		<!-- safari/voiceover requires 'span' (not 'div') for live region-->
 		<span id="searchResultsRegion" aria-label="#{msg.search_results}" aria-live="assertive" aria-relevant="additions">
 		</span>
-		<c:if test="#{empty multiCheckboxSelection or not multiCheckboxSelection}">
-			<p:dataTable id="searchResults"
+		<c:if test="#{empty multiCheckboxSelection or not multiCheckboxSelection and ( model.module == 'RFFI' or model.module == 'RCCI' )}">
+			<p:dataTable id="searchResults" rowKey="#{item.id}" widgetVar="searchResultsTable"
 				value="#{model}" var="item" lazy="true"
 				paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom"
-				rowsPerPageTemplate="10,25,50,100" rows="10"
-				selectionMode="single" selection="#{model.selectedRow}"
+				rowsPerPageTemplate="10,25,50,100" rows="20"
+				selectionMode="multiple" selection="#{model.selectedRows}"
 				emptyMessage="#{msg.search_empty}">
+
+				<c:if test="#{( model.module eq 'RFFI' or model.module eq 'RCCI' )}" >
+				<f:facet name="header" >
+					<p:commandButton id="affect" style="width: 300px ;" process="@this"
+									 icon="fa fa-file-excel-o" value="Affecter Les flux séléctionnés"
+									 onclick="PF('dlgAffect').show(); "
+									 styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only GreenButton RaisedButton" />
+				</f:facet>
+
+				</c:if>
+
 				<ui:insert name="result" />
+
 			</p:dataTable>
 		</c:if>
-		<c:if test="#{not empty multiCheckboxSelection and multiCheckboxSelection}">
+
+		<c:if test="#{not empty multiCheckboxSelection and multiCheckboxSelection }">
 			<p:dataTable id="searchResults"
 				value="#{model}" var="item" lazy="true"
 				paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom"
-				rowsPerPageTemplate="10,25,50,100" rows="10"
+				rowsPerPageTemplate="10,25,50,100" rows="20"
 				selection="#{model.selectedRows}"
 				emptyMessage="#{msg.search_empty}">
 				<p:column id="selectAll" selectionMode="multiple" style="width:18px" rendered="#{permission.canSelect()}" />
@@ -111,6 +137,7 @@
 				</f:facet>
 			</p:dataTable>
 		</c:if>
+
 		<script type="text/javascript">APP.updateSearchResultsRegion('#{resourcesUtil.getPluralableProperty("search_results_status", model.rowCount)}', #{model.rowCount});</script>
 	</ui:define>
 	<ui:define name="dialogs">
@@ -121,5 +148,28 @@
 			<p:commandButton id="askForDeleteItemDialogYes" action="#{model.delete()}" ajax="true" immediate="true" oncomplete="PF('askForDeleteItemDialog').hide();" process="@this" value="#{msg.yes}" title="#{msg.dialog_delete_confirm} #{msg.yes}" icon="ui-icon-check" update=":form:searchResults :form:messages"/>
 			<p:commandButton id="askForDeleteItemDialogNo" value="#{msg.no}" title="#{msg.dialog_delete_confirm} #{msg.no}" onclick="PF('askForDeleteItemDialog').hide(); return false;" icon="ui-icon-cancel"/>
 		</p:confirmDialog>
+
+		<p:dialog header="Affectation des flux : " widgetVar="dlgAffect" resizable="false" rendered="#{( model.module == 'RFFI' or model.module == 'RCCI' )}">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="profil" value="Entité:" />
+				<p:selectOneListbox id="profil" value="#{model.profil}" >
+				<f:selectItem itemLabel="SDM" itemValue="SDM" />
+				<f:selectItem itemLabel="DSI" itemValue="DSI" />
+					<f:selectItem itemLabel="DFI" itemValue="DFI" />
+				<f:selectItem itemLabel="MONETIQUE" itemValue="MONETIQUE" />
+				</p:selectOneListbox>
+
+				<f:facet name="footer">
+					<p:commandButton value="Affecter"
+									 update="searchResults"
+									 actionListener="#{model.affect()}" style="width: 100%"
+									 oncomplete="PF('dlgAffect').hide()"
+							/>
+
+				</f:facet>
+			</h:panelGrid>
+		</p:dialog>
+
+
 	</ui:define>
 </ui:composition >

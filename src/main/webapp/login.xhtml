@@ -22,10 +22,10 @@
 				<appcc:messages id="loginMessages" />
 			</h:panelGrid>
 			<h:panelGrid columns="2">
-				<h:outputLabel for="username" value="#{msg.login_login}" styleClass="required" />
-				<h:inputText id="username" label="#{msg.login_login}" required="true" />
-				<h:outputLabel for="password" value="#{msg.login_password}" styleClass="required" />
-				<h:inputSecret id="password" label="#{msg.login_password}" required="true" />
+				<p:outputLabel for="username" value="#{msg.login_login}" styleClass="required" />
+				<p:inputText id="username" label="#{msg.login_login}" required="true" />
+				<p:outputLabel for="password" value="#{msg.login_password}" styleClass="required" />
+				<p:password  id="password" label="#{msg.login_password}" required="true" />
 				<p:spacer/>
 				<p:commandButton id="login" value="#{msg.login_submit}" action="#{loginPageManager.doLogin()}" icon="ui-icon-circle-check" update="loginMessages" />
 			</h:panelGrid>

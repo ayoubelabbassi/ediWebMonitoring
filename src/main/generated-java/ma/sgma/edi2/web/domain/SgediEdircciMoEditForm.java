@@ -36,6 +36,7 @@ public class SgediEdircciMoEditForm extends GenericEditForm<SgediEdircciMo, Inte
     @Inject
     public SgediEdircciMoEditForm(SgediEdircciMoRepository sgediEdircciMoRepository, SgediEdircciMoGraphLoader sgediEdircciMoGraphLoader) {
         super(sgediEdircciMoRepository, sgediEdircciMoGraphLoader);
+        this.setModule("MO");
     }
 
     /**

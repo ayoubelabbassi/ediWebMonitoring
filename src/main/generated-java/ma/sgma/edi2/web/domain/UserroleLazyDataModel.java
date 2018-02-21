@@ -30,5 +30,6 @@ public class UserroleLazyDataModel extends GenericLazyDataModel<Userrole, Intege
     public UserroleLazyDataModel(UserroleRepository userroleRepository, UserroleController userroleController, UserroleSearchForm userroleSearchForm,
             UserroleExcelExporter userroleExcelExporter) {
         super(userroleRepository, userroleController, userroleSearchForm, userroleExcelExporter);
+        this.setModule("USERROLE");
     }
 }

@@ -9,6 +9,7 @@
 package ma.sgma.edi2.web.domain.support;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -17,10 +18,18 @@ import com.jaxio.jpa.querybyexample.Identifiable;
 import com.jaxio.jpa.querybyexample.SearchParameters;
 import com.jaxio.jpa.querybyexample.TermSelector;
 
+import ma.sgma.edi2.domain.SgediDictodc;
+import ma.sgma.edi2.domain.SgediParams;
+import ma.sgma.edi2.repository.SgediDictodcRepository;
+import ma.sgma.edi2.repository.SgediParamsRepository;
 import ma.sgma.edi2.web.conversation.Conversation;
 import ma.sgma.edi2.web.conversation.ConversationContext;
 import ma.sgma.edi2.web.conversation.ConversationManager;
 import ma.sgma.edi2.web.util.MessageUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import static com.google.common.base.Throwables.propagate;
+import static com.jaxio.jpa.querybyexample.PropertySelector.newPropertySelector;
 
 /**
  * Base Search Form for JPA entities.
@@ -33,6 +42,12 @@ public abstract class GenericSearchForm<E extends Identifiable<PK>, PK extends S
     private transient ConversationManager conversationManager;
     @Inject
     private transient MessageUtil messageUtil;
+
+    @Autowired
+    private SgediDictodcRepository sgediDictodcRepository ;
+    @Autowired
+    private SgediParamsRepository sgediParamsRepository ;
+
 
     @SuppressWarnings("unchecked")
     @PostConstruct
@@ -88,5 +103,54 @@ public abstract class GenericSearchForm<E extends Identifiable<PK>, PK extends S
     public void reset() {
         messageUtil.info("search_reseted");
         resetWithOther(newInstance());
+    }
+
+
+    public List<SgediDictodc> listDico(String code) {
+
+        try {
+            SearchParameters searchParameters = new SearchParameters() //
+                    .limitBroadSearch() //
+                    .caseInsensitive() //
+                    .anywhere() //
+                    .distinct() //
+                    .orMode();
+            SgediDictodc template = sgediDictodcRepository.getNew();
+            template.setLib1(code);
+            searchParameters.anywhere().caseInsensitive();
+            searchParameters.addProperty(newPropertySelector("lib1", sgediDictodcRepository.getType()).selected(code));
+            List<SgediDictodc> ee = sgediDictodcRepository.find(template);
+            return ee;
+        }
+        catch (Exception e) {
+
+            throw propagate(e);
+        }
+
+
+    }
+
+    public List<SgediParams> listParams(String code) {
+
+        try {
+            SearchParameters searchParameters = new SearchParameters() //
+                    .limitBroadSearch() //
+                    .caseInsensitive() //
+                    .anywhere() //
+                    .distinct() //
+                    .orMode();
+            SgediParams template = sgediParamsRepository.getNew();
+            template.setCode(code);
+            searchParameters.anywhere().caseInsensitive();
+            searchParameters.addProperty(newPropertySelector("code", sgediParamsRepository.getType()).selected(code));
+            List<SgediParams> ee = sgediParamsRepository.find(template);
+            return ee;
+        }
+        catch (Exception e) {
+
+            throw propagate(e);
+        }
+
+
     }
 }

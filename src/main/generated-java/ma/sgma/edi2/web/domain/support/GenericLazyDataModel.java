@@ -20,6 +20,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import ma.sgma.edi2.domain.Sgedirffi;
 import org.omnifaces.util.Faces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
@@ -43,7 +44,17 @@ import ma.sgma.edi2.web.util.PrimeFacesUtil;
  */
 public abstract class GenericLazyDataModel<E extends Identifiable<PK>, PK extends Serializable, F extends GenericSearchForm<E, PK, F>>
         extends LazyDataModel<E> {
+
+    public  String module ;
     private static final long serialVersionUID = 1L;
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
+    }
 
     @Inject
     protected ResourcesUtil resourcesUtil;
@@ -250,4 +261,6 @@ public abstract class GenericLazyDataModel<E extends Identifiable<PK>, PK extend
     protected String getExcelFilename() {
         return repository.getType().getSimpleName() + "-" + new SimpleDateFormat("MM-dd-yyyy_HH-mm-ss").format(new Date()) + ".xls";
     }
+
+
 }

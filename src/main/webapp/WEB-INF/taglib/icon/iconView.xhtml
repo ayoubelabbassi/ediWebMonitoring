@@ -1,7 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<p:commandLink 
+	<p:commandLink style="width: 20px"
 		ajax="false"
 		action="#{model.view()}"
 		process="${empty process? '@form' : process}"
@@ -9,6 +9,6 @@
 		rendered="#{empty rendered ? permission.canView(item) : rendered}"
 		title="#{empty item ? resourcesUtil.getProperty(title) : resourcesUtil.getProperty('icon_view', printer.print(item))}" >
 		<ui:insert/>
-		<div class="ui-button ui-icon iconView"/>
+		<i class="fa  fa-folder-open-o"></i>
 	</p:commandLink>
 </ui:composition>

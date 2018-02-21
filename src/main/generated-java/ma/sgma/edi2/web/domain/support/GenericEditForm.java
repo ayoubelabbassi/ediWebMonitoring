@@ -62,6 +62,16 @@ public abstract class GenericEditForm<E extends Identifiable<PK>, PK extends Ser
         this.entityGraphLoader = entityGraphLoader;
     }
 
+    private String module;
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
+    }
+
     /**
      * Retrieves the entity var from the current ConversationContext and
      * depending on the case merge the entity and load its graph. 

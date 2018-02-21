@@ -1,7 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<p:commandLink
+	<p:commandLink style="width: 20px"
 		id="#{id}"
 		ajax="false"
 		action="#{model.add()}"
@@ -10,6 +10,6 @@
 		rendered="#{empty rendered ? not readonly and permission.canCreate() : rendered}"
 		title="#{resourcesUtil.getProperty('icon_add', resourcesUtil.getProperty(title))}" >
 		<ui:insert/>
-		<div class="ui-button ui-icon iconAdd"/>
+		<i class="icon-file-add"></i>
 	</p:commandLink>
 </ui:composition>

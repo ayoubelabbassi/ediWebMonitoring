@@ -61,6 +61,11 @@
 	</tag>
 	<!-- Panels -->
 	<tag>
+		<tag-name>selectMany</tag-name>
+		<source>selectMany/selectMany.xhtml</source>
+	</tag>
+	<!-- Panels -->
+	<tag>
 		<tag-name>edit</tag-name>
 		<source>panel/edit.xhtml</source>
 	</tag>

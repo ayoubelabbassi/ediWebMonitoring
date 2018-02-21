@@ -30,5 +30,6 @@ public class SgediEdircciMoLazyDataModel extends GenericLazyDataModel<SgediEdirc
     public SgediEdircciMoLazyDataModel(SgediEdircciMoRepository sgediEdircciMoRepository, SgediEdircciMoController sgediEdircciMoController,
             SgediEdircciMoSearchForm sgediEdircciMoSearchForm, SgediEdircciMoExcelExporter sgediEdircciMoExcelExporter) {
         super(sgediEdircciMoRepository, sgediEdircciMoController, sgediEdircciMoSearchForm, sgediEdircciMoExcelExporter);
+        this.setModule("MO");
     }
 }

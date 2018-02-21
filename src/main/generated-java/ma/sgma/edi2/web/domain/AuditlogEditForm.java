@@ -28,6 +28,7 @@ public class AuditlogEditForm extends GenericEditForm<Auditlog, Integer> {
     @Inject
     public AuditlogEditForm(AuditlogRepository auditlogRepository) {
         super(auditlogRepository);
+        this.setModule("AUDIT");
     }
 
     /**

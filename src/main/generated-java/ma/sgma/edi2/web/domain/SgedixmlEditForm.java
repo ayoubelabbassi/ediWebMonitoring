@@ -28,6 +28,7 @@ public class SgedixmlEditForm extends GenericEditForm<Sgedixml, Integer> {
     @Inject
     public SgedixmlEditForm(SgedixmlRepository sgedixmlRepository) {
         super(sgedixmlRepository);
+        this.setModule("XML");
     }
 
     /**

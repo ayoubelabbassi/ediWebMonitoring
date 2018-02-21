@@ -2,7 +2,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	<p:commandLink 
-		update=":form:#{dialogWidgetVar}Content"
+		update=":form:#{dialogWidgetVar}Content" style="width: 20px"
 		process="@this"
 		immediate="true"
 		oncomplete="PF('#{dialogWidgetVar}').show(); APP.focusTo('form:#{dialogWidgetVar}No');"
@@ -10,6 +10,6 @@
 		rendered="#{empty rendered ? not readonly and permission.canDelete(item) : rendered}"
 		title="#{empty item ? resourcesUtil.getProperty(title) : resourcesUtil.getProperty('icon_remove', printer.print(item))}">
 		<ui:insert/>
-		<div class="ui-button ui-icon iconDelete"/>
+		<i class="icon-delete"></i>
 	</p:commandLink>
 </ui:composition>

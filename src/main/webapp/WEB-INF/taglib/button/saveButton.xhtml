@@ -2,15 +2,15 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	<!-- Display commandButton for 'saveAndClose' or 'ok' action depending on the context -->
-	<p:commandButton id="saveAndClose" action="#{bean.saveAndClose()}" ajax="true" update="messages delete" process="@form"
-		styleClass="aria-save-button default"
-		icon="ui-icon-disk"
+	<p:commandButton id="saveAndClose" action="#{bean.saveAndClose()}" ajax="true" update="messages delete" process="@form" style="width:200px;"
+					 styleClass="ui-button-inline ui-widget ui-state-default ui-corner-all ui-button-text-only GreenButton RaisedButton"
+		icon="fa fa-save"
 		value="#{msg.menu_save}"
 		title="#{msg.menu_save} #{resourcesUtil.getProperty(title)}"
 		rendered="#{not sub and not readonly}" />
-	<p:commandButton id="ok" action="#{bean.ok()}" process="@form" ajax="true" update="messages"
-		styleClass="default"
-		icon="ui-icon-check"
+	<p:commandButton id="ok" action="#{bean.ok()}" process="@form" ajax="true" update="messages" style="width:200px;"
+					 styleClass="ui-button-inline ui-widget ui-state-default ui-corner-all ui-button-text-only GreenButton RaisedButton"
+		icon="icon-checkmark"
 		value="${msg.submit}"
 		rendered="#{sub and not readonly}" />
 </ui:composition>

@@ -1,0 +1,23 @@
+
+
+.header{
+    color: #f03369 !important;
+    background-color: #ffffff !important;
+    border-color: #f4bacb !important;
+}
+.labelHeaderError{
+    FONT-SIZE: 1.2em;
+}
+
+.Container100 {
+    width: 100%;
+    float: none !important;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.ui-fieldset-legend {
+
+    background-color: #e53935 !important ;
+
+}

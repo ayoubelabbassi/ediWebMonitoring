@@ -28,6 +28,7 @@ public class UserroleEditForm extends GenericEditForm<Userrole, Integer> {
     @Inject
     public UserroleEditForm(UserroleRepository userroleRepository) {
         super(userroleRepository);
+        this.setModule("USERROLE");
     }
 
     /**

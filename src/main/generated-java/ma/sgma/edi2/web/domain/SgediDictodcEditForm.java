@@ -27,7 +27,10 @@ public class SgediDictodcEditForm extends GenericEditForm<SgediDictodc, Integer>
 
     @Inject
     public SgediDictodcEditForm(SgediDictodcRepository sgediDictodcRepository) {
+
+
         super(sgediDictodcRepository);
+        this.setModule("DIC");
     }
 
     /**

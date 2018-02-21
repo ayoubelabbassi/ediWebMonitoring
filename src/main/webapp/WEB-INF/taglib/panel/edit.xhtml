@@ -31,24 +31,55 @@
 	</ui:define>
 	<ui:define name="content">
 		<p:breadCrumb model="#{conversationBreadCrumb.model}" rendered="#{conversationBreadCrumb.render}" />
-		<p:fieldset id="fieldset">
-			<input type="hidden" name="_cid" value="#{conversationManager.currentConversation.cid}"/>
+		<input type="hidden" name="_cid" value="#{conversationManager.currentConversation.cid}"/>
+		<div  class="Container100 ui-fluid">
+		<div class="Card">
+		<div class="CardTopic">Formulaire de Consultation</div>
+		<div class="Separator"></div>
+
 			<f:validateBean disabled="true">
-				<p:panelGrid columns="6" columnClasses="ui-grid-col-10,ui-grid-col-10,ui-grid-col-10,ui-grid-col-10,ui-grid-col-10,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank">
+		<p:panelGrid id="filtersFieldset" columns="1"
+
+					 layout="grid"
+					 styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+
+
+
 					<ui:insert name="form" />
-				</p:panelGrid>
-				<app:saveButton title="#{title}" bean="#{bean}"/>
+
+
+
+		</p:panelGrid>
 			</f:validateBean>
-		</p:fieldset>
-		<p:tabView id="tabs" activeIndex="#{bean.tabBean.activeIndex}" rendered="#{not empty bean.tabBean and not print}">
+			<p:separator />
+		<p:panelGrid >
+			<app:saveButton title="#{title}" bean="#{bean}" />
+
+			<p:commandButton value="Affecter" rendered="#{bean.module == 'RFFI' or bean.module == 'RCCI'}"
+							  icon="fa fa-sitemap"
+							 style="width:200px;"
+							 onclick="PF('dlgUniteAffect').show(); "
+							 styleClass="ui-button-inline ui-widget ui-state-default ui-corner-all ui-button-text-only GreenButton RaisedButton" />
+
+				<p:commandButton rendered="#{bean.module == 'RFFI' or bean.module == 'RCCI'}"
+						value="Marquer Traité" style="width:200px;" actionListener="#{bean.envoyerODC()}" update=":form"
+							   icon="fa fa-send" styleClass="ui-button-inline ui-widget ui-state-default ui-corner-all ui-button-text-only GreenButton RaisedButton"/>
+		</p:panelGrid>
+		</div>
+		</div>
+
+		 <p:tabView id="tabs" activeIndex="#{bean.tabBean.activeIndex}" rendered="#{not empty bean.tabBean and not print}">
 			<p:ajax event="tabChange" />
 			<ui:insert name="tabs"/>
 		</p:tabView>
+
 		<p:accordionPanel id="tabsPrint" activeIndex="0,1,2,3,4,5,6,7,8,9,10" cache="false" multiple="true" 
 			rendered="#{not empty bean.tabBean and print}">
 			<ui:insert name="tabs"/>
 		</p:accordionPanel>
 	</ui:define>
+
 	<ui:define name="dialogs">
 		<ui:insert name="custom-dialogs" />
 		<p:confirmDialog widgetVar="askForDeleteDialog" header="#{msg.menu_delete}?" message="#{msg.dialog_delete_confirm}">
@@ -69,5 +100,26 @@
 				title="#{msg.dialog_ask_for_save} #{msg.no}"
 				icon="ui-icon-cancel" immediate="true" process="@none" />
 		</p:confirmDialog>
+
+		<p:dialog header="Affectation des flux : " widgetVar="dlgUniteAffect" resizable="false" rendered="#{bean.module == 'RFFI' or bean.module == 'RCCI'}" >
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="profil" value="Entité:"  />
+				<p:selectOneListbox id="profil" value="#{bean.profil}" >
+					<f:selectItem itemLabel="SDM" itemValue="SDM" />
+					<f:selectItem itemLabel="DSI" itemValue="DSI" />
+					<f:selectItem itemLabel="DFI" itemValue="DFI" />
+					<f:selectItem itemLabel="MONETIQUE" itemValue="MONETIQUE" />
+				</p:selectOneListbox>
+
+				<f:facet name="footer">
+					<p:commandButton value="Affecter" update=":form"
+
+									 actionListener="#{bean.affecter()}" style="width: 100%"
+									 oncomplete="PF('dlgUniteAffect').hide()"
+							/>
+
+				</f:facet>
+			</h:panelGrid>
+		</p:dialog>
 	</ui:define>
 </ui:composition>

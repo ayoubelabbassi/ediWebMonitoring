@@ -29,6 +29,7 @@ import ma.sgma.edi2.domain.Sgedirffi_;
 import ma.sgma.edi2.domain.Sgedixml;
 import ma.sgma.edi2.domain.Userrole;
 import ma.sgma.edi2.repository.SgediDictodcRepository;
+import ma.sgma.edi2.repository.SgediParamsRepository;
 import ma.sgma.edi2.repository.SgediTitrerffiRepository;
 import ma.sgma.edi2.web.domain.support.GenericSearchForm;
 import ma.sgma.edi2.web.faces.ConversationContextScoped;
@@ -41,9 +42,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Named
 @ConversationContextScoped
 public class SgedirffiSearchForm extends GenericSearchForm<Sgedirffi, Integer, SgedirffiSearchForm> {
-
-    @Autowired
-    private SgediDictodcRepository sgediDictodcRepository ;
 
 
     //specific
@@ -447,48 +445,8 @@ public class SgedirffiSearchForm extends GenericSearchForm<Sgedirffi, Integer, S
 
     }
 
-    public List<SgediDictodc> getListEchange() {
-
-        try {
-            SearchParameters searchParameters = new SearchParameters() //
-                    .limitBroadSearch() //
-                    .caseInsensitive() //
-                    .anywhere() //
-                    .distinct() //
-                    .orMode();
-            SgediDictodc template = sgediDictodcRepository.getNew();
-            template.setLib1("SENS");
-            searchParameters.anywhere().caseInsensitive();
-            searchParameters.addProperty(newPropertySelector("lib1", sgediDictodcRepository.getType()).selected("SENS"));
-            List<SgediDictodc> ee = sgediDictodcRepository.find(template);
-            return ee;
-        }
-     catch (Exception e) {
-
-        throw propagate(e);
-    }
-    }
-        public List<SgediDictodc> listEchange(String code) {
-
-            try {
-                SearchParameters searchParameters = new SearchParameters() //
-                        .limitBroadSearch() //
-                        .caseInsensitive() //
-                        .anywhere() //
-                        .distinct() //
-                        .orMode();
-                SgediDictodc template = sgediDictodcRepository.getNew();
-                template.setLib1(code);
-                searchParameters.anywhere().caseInsensitive();
-                searchParameters.addProperty(newPropertySelector("lib1", sgediDictodcRepository.getType()).selected("SENS"));
-                List<SgediDictodc> ee = sgediDictodcRepository.find(template);
-                return ee;
-            }
-            catch (Exception e) {
-
-                throw propagate(e);
-            }
 
 
-    }
+
+
 }

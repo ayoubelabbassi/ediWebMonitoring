@@ -30,5 +30,6 @@ public class SgediParamsLazyDataModel extends GenericLazyDataModel<SgediParams, 
     public SgediParamsLazyDataModel(SgediParamsRepository sgediParamsRepository, SgediParamsController sgediParamsController,
             SgediParamsSearchForm sgediParamsSearchForm, SgediParamsExcelExporter sgediParamsExcelExporter) {
         super(sgediParamsRepository, sgediParamsController, sgediParamsSearchForm, sgediParamsExcelExporter);
+        this.setModule("PARAM");
     }
 }

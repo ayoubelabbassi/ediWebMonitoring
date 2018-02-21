@@ -11,12 +11,22 @@ package ma.sgma.edi2.web.domain;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.jaxio.jpa.querybyexample.SearchParameters;
+import com.uwyn.jhighlight.tools.StringUtils;
+import ma.sgma.edi2.util.Constant;
 import org.primefaces.model.LazyDataModel;
 
 import ma.sgma.edi2.domain.Sgedirffi;
 import ma.sgma.edi2.repository.SgedirffiRepository;
 import ma.sgma.edi2.web.domain.support.GenericLazyDataModel;
 import ma.sgma.edi2.web.faces.ConversationContextScoped;
+import org.primefaces.model.SortOrder;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.util.*;
 
 /**
  * Provide PrimeFaces {@link LazyDataModel} for {@link Sgedirffi}
@@ -26,9 +36,74 @@ import ma.sgma.edi2.web.faces.ConversationContextScoped;
 public class SgedirffiLazyDataModel extends GenericLazyDataModel<Sgedirffi, Integer, SgedirffiSearchForm> {
     private static final long serialVersionUID = 1L;
 
+    private String profil ;
+
+    public String getProfil() {
+        return profil;
+    }
+
+    public void setProfil(String profil) {
+        this.profil = profil;
+    }
+
     @Inject
     public SgedirffiLazyDataModel(SgedirffiRepository sgedirffiRepository, SgedirffiController sgedirffiController, SgedirffiSearchForm sgedirffiSearchForm,
             SgedirffiExcelExporter sgedirffiExcelExporter) {
         super(sgedirffiRepository, sgedirffiController, sgedirffiSearchForm, sgedirffiExcelExporter);
+        this.setModule("RFFI");
+    }
+
+
+    public void affect(){
+        if(this.getSelectedRows() !=null && this.getSelectedRows().length > 0) {
+            for (Sgedirffi e :  this.getSelectedRows()) {
+
+                    e = repository.getById(e.getId());
+                    e.setAffectprofil(getProfil());
+                    this.repository.merge(e);
+            }
+        }
+    }
+
+    @Override
+    public List<Sgedirffi> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+
+        Map<String, Object> filter = new HashMap<>();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        List<String> roleString = new ArrayList<>();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            Collection<GrantedAuthority> role = (Collection<GrantedAuthority>) authentication.getAuthorities();
+
+            for (GrantedAuthority aut : role){
+                roleString.add(StringUtils.replace(aut.getAuthority(),"ROLE_",""));
+            }
+        }
+
+        Sgedirffi exemple =  new Sgedirffi();
+
+        if(roleString.contains(Constant.DFI)) {
+
+        }
+        else if (roleString.contains(Constant.RESEAU)) {
+            exemple.setAffectprofil(Constant.RESEAU);
+        }
+        else if (roleString.contains(Constant.SDM)) {
+            exemple.setAffectprofil(Constant.SDM);
+        }
+        else if (roleString.contains(Constant.DSI)) {
+            exemple.setAffectprofil(Constant.DSI);
+        }
+        else if (roleString.contains(Constant.MONETIQUE)) {
+            exemple.setAffectprofil(Constant.MONETIQUE);
+        }
+
+        SearchParameters sp = populateSearchParameters(first, pageSize, sortField, sortOrder, filters);
+
+        setRowCount(repository.findCount(exemple,sp));
+        return repository.find(exemple,sp);
+
+
+
     }
 }

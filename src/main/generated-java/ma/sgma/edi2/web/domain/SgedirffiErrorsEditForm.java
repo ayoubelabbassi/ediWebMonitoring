@@ -35,6 +35,8 @@ public class SgedirffiErrorsEditForm extends GenericEditForm<SgedirffiErrors, In
     @Inject
     public SgedirffiErrorsEditForm(SgedirffiErrorsRepository sgedirffiErrorsRepository, SgedirffiErrorsGraphLoader sgedirffiErrorsGraphLoader) {
         super(sgedirffiErrorsRepository, sgedirffiErrorsGraphLoader);
+        this.setModule("ERROS");
+
     }
 
     /**

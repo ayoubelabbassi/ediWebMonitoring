@@ -30,5 +30,6 @@ public class AuditlogLazyDataModel extends GenericLazyDataModel<Auditlog, Intege
     public AuditlogLazyDataModel(AuditlogRepository auditlogRepository, AuditlogController auditlogController, AuditlogSearchForm auditlogSearchForm,
             AuditlogExcelExporter auditlogExcelExporter) {
         super(auditlogRepository, auditlogController, auditlogSearchForm, auditlogExcelExporter);
+        this.setModule("AUDIT");
     }
 }

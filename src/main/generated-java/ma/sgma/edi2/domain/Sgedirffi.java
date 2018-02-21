@@ -11,7 +11,7 @@ package ma.sgma.edi2.domain;
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
-import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 import static javax.persistence.TemporalType.DATE;
 import static javax.persistence.TemporalType.TIMESTAMP;
@@ -470,8 +470,8 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
     }
     // -- [montantDevise] ------------------------
 
-    @Digits(integer = 0, fraction = 17)
-    @Column(name = "montant_devise", precision = 17, scale = 17)
+    @Digits(integer = 11, fraction = 6)
+    @Column(name = "montant_devise", precision = 11, scale = 7)
     public Double getMontantDevise() {
         return montantDevise;
     }
@@ -486,8 +486,8 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
     }
     // -- [coursApplique] ------------------------
 
-    @Digits(integer = 0, fraction = 17)
-    @Column(name = "cours_applique", precision = 17, scale = 17)
+    @Digits(integer = 11, fraction = 6)
+    @Column(name = "cours_applique", precision = 11, scale = 6)
     public Double getCoursApplique() {
         return coursApplique;
     }
@@ -502,8 +502,8 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
     }
     // -- [montantApplique] ------------------------
 
-    @Digits(integer = 0, fraction = 17)
-    @Column(name = "montant_applique", precision = 17, scale = 17)
+    @Digits(integer = 13, fraction = 4)
+    @Column(name = "montant_applique", precision = 13, scale = 4)
     public Double getMontantApplique() {
         return montantApplique;
     }
@@ -956,7 +956,7 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     @JoinColumn(name = "id_xml")
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = EAGER)
     public Sgedixml getIdXml() {
         return idXml;
     }
@@ -978,7 +978,7 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     @JoinColumn(name = "type_identification")
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = EAGER)
     public SgediDictodc getTypeIdentification() {
         return typeIdentification;
     }
@@ -1000,7 +1000,7 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     @JoinColumn(name = "statut_int")
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = EAGER)
     public SgediParams getStatutInt() {
         return statutInt;
     }
@@ -1022,7 +1022,7 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     @JoinColumn(name = "qualite")
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = EAGER)
     public SgediDictodc getQualite() {
         return qualite;
     }
@@ -1044,7 +1044,7 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     @JoinColumn(name = "code_role")
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = EAGER)
     public Userrole getCodeRole() {
         return codeRole;
     }
@@ -1067,7 +1067,7 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
 
     @NotNull
     @JoinColumn(name = "categorie_formule", nullable = false)
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = EAGER)
     public SgediDictodc getCategorieFormule() {
         return categorieFormule;
     }
@@ -1090,7 +1090,7 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
 
     @NotNull
     @JoinColumn(name = "sens_operation", nullable = false)
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = EAGER)
     public SgediDictodc getSensOperation() {
         return sensOperation;
     }
@@ -1112,7 +1112,7 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     @JoinColumn(name = "statut_ech")
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = EAGER)
     public SgediParams getStatutEch() {
         return statutEch;
     }
@@ -1188,7 +1188,7 @@ public class Sgedirffi implements Identifiable<Integer>, Serializable {
     // one to many: sgedirffi ==> sgediTitrerffis
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    @OneToMany(mappedBy = "idrffi", orphanRemoval = true, cascade = ALL)
+    @OneToMany(mappedBy = "idrffi" )
     public List<SgediTitrerffi> getSgediTitrerffis() {
         return sgediTitrerffis;
     }

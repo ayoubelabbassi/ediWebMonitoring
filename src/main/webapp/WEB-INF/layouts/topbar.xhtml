@@ -13,27 +13,19 @@
             <a id="menu-button"><i class="icon-th-menu"></i></a>
 
             <a href="#{baseURL}/home.faces">
-                <h:graphicImage url="#{baseURL}/resources/img/logo.png"  style="width: 58px;padding-left: 10px;" id="logo" library="volt-layout" />
+                <h:graphicImage url="#{baseURL}/resources/img/sg.png"  style="width: 200px;padding-left: 20px;" id="logo" library="volt-layout" />
             </a>
 
             <span class="DispInlBlock Fright" style="margin:10px 10px 0px 0px;" id="toprightmenu">
 
                     <p:splitButton value="Menu" icon="ui-icon-check fa fa-cog" styleClass="White Fs14" appendTo="@this">
-                        <p:menuitem value="Repértoire RFFI"  icon="fa fa-user" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
-                        <p:menuitem value="Repértoire RCCI" icon="fa fa-file-text-o" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
-                        <p:menuitem value="Saisie Formule SDM" icon="fa fa-file-text-o" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
-                        <p:menuitem value="Charts" icon="fa fa-line-chart" />
+                        <p:menuitem value="Historique action" icon="fa fa-stack-exchange"
+                                    rendered="#{userContextService.hasRole('ROLE_ADMIN')}" action="#{auditlogController.beginSearch()}"/>
+                        <p:menuitem value="Monitoring" url="#{baseURL}monitoring" icon="fa fa-ambulance" rendered="#{userContextService.hasRole('ROLE_MONITORING')}" />
                         <p:separator />
-                        <p:menuitem value="Parametrage Dictionnaire" icon="fa fa-envelope-o" rendered="#{userContextService.hasRole('ROLE_ADMIN')}" />
-                        <p:menuitem value="Parametrage Utilisateurs" icon="fa fa-file-zip-o" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
-                        <p:menuitem value="Parametrage Application" icon="fa fa-tasks" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
-                        <p:separator />
-                        <p:menuitem value="Historique action" icon="fa fa-tasks" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
-                        <p:separator />
-                        <p:menuitem value="Se Connecter"  icon="fa fa-key" rendered="#{!userContextService.isLoggedIn()}" url="#{facesContext.externalContext.contextName}/login.faces" />
-                        <p:menuitem value="Se Deconnecter"  icon="fa fa-key" rendered="#{userContextService.isLoggedIn()}" url="#{facesContext.externalContext.contextName}/logout.faces"/>
-                        <p:separator />
-                        <p:menuitem value="Monitoring" url="#{baseURL}/monitoring" icon="fa fa-key" rendered="#{userContextService.hasRole('ROLE_MONITORING')}" />
+                        <p:menuitem value="Se Connecter"  icon="fa fa-key" rendered="#{!userContextService.isLoggedIn()}" url="##{baseURL}login.faces" />
+                        <p:menuitem value="Se Deconnecter"  icon="fa fa-key" rendered="#{userContextService.isLoggedIn()}" url="#{baseURL}logout.faces"/>
+
                     </p:splitButton>
 
             </span>

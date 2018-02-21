@@ -37,6 +37,7 @@ public class AccountEditForm extends GenericEditForm<Account, Integer> {
     @Inject
     public AccountEditForm(AccountRepository accountRepository, AccountGraphLoader accountGraphLoader) {
         super(accountRepository, accountGraphLoader);
+        this.setModule("ACCOUNT");
     }
 
     /**

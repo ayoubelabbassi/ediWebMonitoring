@@ -6,62 +6,39 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pv="http://primefaces.org/volt">
 
-        <pv:menu>
-            <p:submenu id="rm_repertoire" label="Repertoires" icon="icon-leaf">
-                <p:menuitem value="Repértoire RFFI" icon="fa fa-user" action="#{sgedirffiController.beginSearch()}"
-                            rendered="#{userContextService.hasRole('ROLE_ADMIN')}" />
-                <p:menuitem value="Repértoire RCCI" icon="fa fa-file-text-o"
+        <pv:menu rendered="#{userContextService.isLoggedIn()}">
+            <p:submenu id="rm_repertoire" label="Repertoires" icon="fa fa-archive">
+                <p:menuitem value="Repértoire RFFI" icon="fa fa-align-justify" action="#{sgedirffiController.beginSearch()}"
+                            rendered="#{userContextService.hasRole('ROLE_ADMIN') }" />
+                <p:menuitem value="Repértoire RCCI" icon="fa fa-align-justify"
                             rendered="#{userContextService.hasRole('ROLE_ADMIN')}" action="#{sgedircciController.beginSearch()}"/>
                 <p:menuitem value="Saisie Formule SDM" icon="fa fa-file-text-o"
-                            rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
-                <p:menuitem value="Reporting" icon="fa fa-line-chart"/>
+                            rendered="#{userContextService.hasRole('ROLE_SDM')}"/>
             </p:submenu>
-            <p:submenu id="rm_administration" label="Administration" icon="icon-leaf">
-                <p:menuitem value="Parametrage Dictionnaire" icon="fa fa-envelope-o"
+
+
+            <p:submenu id="rm_administration" label="Administration" icon="icon-spanner-outline">
+                <p:menuitem value="Paramétrage Dictionnaire" icon="icon-flow-parallel"
                             rendered="#{userContextService.hasRole('ROLE_ADMIN')}" action="#{sgediDictodcController.beginSearch()}"/>
 
-                <p:menuitem value="Parametrage Application" icon="fa fa-tasks"
+                <p:menuitem value="Paramétrage Application" icon="icon-flow-switch"
                             rendered="#{userContextService.hasRole('ROLE_ADMIN')}"  action="#{sgediParamsController.beginSearch()}"/>
             </p:submenu>
-            <p:submenu id="rm_utilsqteur" label="Utilisateurs" icon="icon-leaf">
-                <p:menuitem value="Parametrage Utilisateurs" icon="fa fa-file-zip-o"
+
+
+            <p:submenu id="rm_utilsqteur" label="Utilisateurs" icon="fa fa-users">
+                <p:menuitem value="Paramétrage Utilisateurs" icon="fa fa-user-secret"
                             rendered="#{userContextService.hasRole('ROLE_ADMIN')}" action="#{accountController.beginSearch()}"/>
-                <p:menuitem value="Parametrage Roles" icon="fa fa-file-zip-o"
+                <p:menuitem value="Paramétrage Roles" icon="fa fa-certificate"
                             rendered="#{userContextService.hasRole('ROLE_ADMIN')}" action="#{userroleController.beginSearch()}"/>
             </p:submenu>
 
-            <p:submenu id="rm_historique" label="Dashboards" icon="icon-leaf">
-                <p:menuitem value="Historique action" icon="fa fa-tasks"
-                            rendered="#{userContextService.hasRole('ROLE_ADMIN')}" action="#{auditlogController.beginSearch()}"/>
+            <p:submenu id="rm_historique" label="Dashboards" icon="fa fa-dashboard">
+                <p:menuitem value="Reporting" icon="fa fa-line-chart" rendered="#{userContextService.hasRole('ROLE_ADMIN')}"/>
+
             </p:submenu>
 
-            <p:submenu id="rm_dashboards" label="Dashboards" icon="icon-leaf">
-                <p:menuitem id="rm_db_landing" value="Your Promotion Page" icon="icon-leaf" outcome="/home"/>
-                <p:menuitem id="rm_db_v1" value="Dashboard V1" icon="icon-leaf" outcome="/home"/>
-                <p:menuitem id="rm_db_v2" value="Dashboard V2" icon="icon-leaf" outcome="/home"/>
-            </p:submenu>
 
-            <p:submenu id="rm_menupos" label="Menu Position" icon="icon-select">
-                <p:menuitem id="rm_left" url="#" value="Inline Menu" icon="icon-uniE675"
-                            onclick="$('body').removeClass('PopupMenu');return false;"/>
-                <p:menuitem id="rm_popup" url="#" value="Popup Menu" icon="icon-windows"
-                            onclick="$('body').addClass('PopupMenu');return false;"/>
-            </p:submenu>
-
-            <p:submenu id="rm_colors" label="Body Colors" icon="icon-lab">
-                <p:menuitem id="rm_bg_blue" url="#" value="Blue" icon="icon-syringe"
-                            onclick="$('body').removeClass().addClass('BlueBody');return false;"/>
-                <p:menuitem id="rm_bg_leaden" url="#" value="Leaden" icon="icon-syringe"
-                            onclick="$('body').removeClass().addClass('LeadenBody');return false;"/>
-                <p:menuitem id="rm_bg_red" url="#" value="Red" icon="icon-syringe"
-                            onclick="$('body').removeClass().addClass('RedBody');return false;"/>
-                <p:menuitem id="rm_bg_green" url="#" value="Green" icon="icon-syringe"
-                            onclick="$('body').removeClass().addClass('GreenBody');return false;"/>
-                <p:menuitem id="rm_bg_cf" url="#" value="CornFlower" icon="icon-syringe"
-                            onclick="$('body').removeClass().addClass('CornFlowerBody');return false;"/>
-                <p:menuitem id="rm_bg_gray" url="#" value="Gray" icon="icon-syringe"
-                            onclick="$('body').removeClass().addClass('DarkGrayBody');return false;"/>
-            </p:submenu>
 
         </pv:menu>
 

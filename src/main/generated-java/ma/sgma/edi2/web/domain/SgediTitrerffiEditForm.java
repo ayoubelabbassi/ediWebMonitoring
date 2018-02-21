@@ -35,6 +35,7 @@ public class SgediTitrerffiEditForm extends GenericEditForm<SgediTitrerffi, Inte
     @Inject
     public SgediTitrerffiEditForm(SgediTitrerffiRepository sgediTitrerffiRepository, SgediTitrerffiGraphLoader sgediTitrerffiGraphLoader) {
         super(sgediTitrerffiRepository, sgediTitrerffiGraphLoader);
+        this.setModule("TITRE");
     }
 
     /**

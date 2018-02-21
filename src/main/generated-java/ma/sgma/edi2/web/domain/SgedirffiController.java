@@ -30,5 +30,11 @@ public class SgedirffiController extends GenericController<Sgedirffi, Integer> {
     @Inject
     public SgedirffiController(SgedirffiRepository sgedirffiRepository, SgedirffiPermission sgedirffiPermission, SgedirffiPrinter sgedirffiPrinter) {
         super(sgedirffiRepository, sgedirffiPermission, sgedirffiPrinter, SGEDIRFFI_SELECT_URI, SGEDIRFFI_EDIT_URI);
+
     }
+
+
+
+
+
 }

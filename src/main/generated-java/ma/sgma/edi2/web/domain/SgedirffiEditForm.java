@@ -22,6 +22,7 @@ import ma.sgma.edi2.domain.Sgedirffi_;
 import ma.sgma.edi2.domain.Sgedixml;
 import ma.sgma.edi2.domain.Userrole;
 import ma.sgma.edi2.repository.SgedirffiRepository;
+import ma.sgma.edi2.util.Constant;
 import ma.sgma.edi2.web.domain.support.GenericEditForm;
 import ma.sgma.edi2.web.domain.support.GenericToManyAssociation;
 import ma.sgma.edi2.web.domain.support.GenericToOneAssociation;
@@ -63,6 +64,18 @@ public class SgedirffiEditForm extends GenericEditForm<Sgedirffi, Integer> {
     @Inject
     public SgedirffiEditForm(SgedirffiRepository sgedirffiRepository, SgedirffiGraphLoader sgedirffiGraphLoader) {
         super(sgedirffiRepository, sgedirffiGraphLoader);
+        this.setModule("RFFI");
+    }
+
+
+    public String profil ;
+
+    public String getProfil() {
+        return profil;
+    }
+
+    public void setProfil(String profil) {
+        this.profil = profil;
     }
 
     /**
@@ -296,5 +309,32 @@ public class SgedirffiEditForm extends GenericEditForm<Sgedirffi, Integer> {
 
     public GenericToManyAssociation<SgediTitrerffi, Integer> getSgediTitrerffis() {
         return sgediTitrerffis;
+    }
+
+    public void affecter(){
+        this.getEntity().setAffectprofil(getProfil());
+        saveEntity(this.getEntity());
+        messageUtil.infoEntity("status_saved_ok", this.getEntity());
+
+    }
+
+    public boolean valider(Sgedirffi entite){
+        return true;
+    }
+
+    public void envoyerODC(){
+
+        if(valider(this.getEntity())){
+            //Statut in a lecture
+            SgediParams intg  = sgediParamsController.getRepository().getById(Constant.STATUT_LU);;
+            SgediParams echa = sgediParamsController.getRepository().getById(Constant.A_ENVOYER);
+
+
+            this.getEntity().setStatutEch(echa);
+            this.getEntity().setStatutInt(intg);
+
+            saveEntity(this.getEntity());
+            messageUtil.infoEntity("status_saved_ok", this.getEntity());
+        }
     }
 }

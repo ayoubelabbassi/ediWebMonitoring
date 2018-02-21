@@ -30,5 +30,7 @@ public class SgedircciLazyDataModel extends GenericLazyDataModel<Sgedircci, Inte
     public SgedircciLazyDataModel(SgedircciRepository sgedircciRepository, SgedircciController sgedircciController, SgedircciSearchForm sgedircciSearchForm,
             SgedircciExcelExporter sgedircciExcelExporter) {
         super(sgedircciRepository, sgedircciController, sgedircciSearchForm, sgedircciExcelExporter);
+        this.setModule("RCCI");
+
     }
 }
